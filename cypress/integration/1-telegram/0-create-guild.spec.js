@@ -68,6 +68,7 @@ describe("create-guild", () => {
 
       it("submit form", () => {
         cy.findByText("Summon").click()
+        cy.wait(2000)
         cy.confirmMetamaskSignatureRequest()
       })
 
