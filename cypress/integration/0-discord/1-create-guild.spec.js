@@ -29,7 +29,7 @@ describe("create-guild", () => {
     describe("creating guild", () => {
       it("fill name field", () => {
         cy.get("input[name='name']")
-          .invoke("val", Cypress.env("dcInvite"))
+          .invoke("val", Cypress.env("guildName"))
           .type(" {backspace}")
           .blur()
         cy.wait(500)
