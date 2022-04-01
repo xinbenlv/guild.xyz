@@ -28,7 +28,10 @@ describe("create-guild", () => {
 
     describe("creating guild", () => {
       it("fill name field", () => {
-        cy.get("input[name='name']").type(Cypress.env("guildName")).blur()
+        cy.get("input[name='name']")
+          .invoke("val", Cypress.env("dcInvite"))
+          .type(" {backspace}")
+          .blur()
         cy.wait(500)
         cy.get(".chakra-form__error-message", { timeout: 3000 }).should("not.exist")
       })
