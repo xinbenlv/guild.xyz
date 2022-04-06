@@ -48,12 +48,12 @@ describe("join-guild", () => {
                   data: "Bearer 12345",
                 })
               )
+              cy.wait("@fetchIdentify")
             }
           })
         }
       })
 
-      cy.wait("@fetchIdentify")
       cy.findByText("Verify address").click()
       cy.wait(2000)
       cy.confirmMetamaskSignatureRequest()
