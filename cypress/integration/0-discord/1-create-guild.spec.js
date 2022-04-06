@@ -30,14 +30,10 @@ describe("create-guild", () => {
       it("can connect Discord", () => {
         cy.get("h2").findByText("Discord").click()
 
-        cy.intercept(
-          {
-            method: "GET",
-            url: "/api/users/@me/guilds",
-            hostname: "discord.com",
-          },
-          { statusCode: 200, fixture: "testUserServers.json" }
-        )
+        cy.intercept("https://discord.com/api/users/@me/guilds", {
+          statusCode: 200,
+          fixture: "testUserServers.json",
+        }).as("fetchGuilds")
 
         cy.findByText("Connect Discord", { timeout: 3000 }).then(($btn) => {
           if ($btn) {
@@ -45,13 +41,13 @@ describe("create-guild", () => {
             cy.window().then((wnd) =>
               wnd.postMessage({
                 type: "DC_AUTH_SUCCESS",
-                data: { id: "604927885530234908" },
+                data: "Bearer 12345",
               })
             )
           }
         })
 
-        cy.wait(2000) // Wait for cy.intercept
+        cy.wait("@fetchGuilds")
       })
 
       it("select Discord server", () => {
