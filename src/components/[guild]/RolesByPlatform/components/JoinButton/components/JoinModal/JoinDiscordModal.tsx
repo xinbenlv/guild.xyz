@@ -17,6 +17,7 @@ import { Modal } from "components/common/Modal"
 import ModalButton from "components/common/ModalButton"
 import useUser from "components/[guild]/hooks/useUser"
 import useSubmit from "hooks/useSubmit"
+import { useRouter } from "next/router"
 import { Check, CheckCircle } from "phosphor-react"
 import { useEffect, useState } from "react"
 import platformsContent from "../../platformsContent"
@@ -36,6 +37,7 @@ const JoinDiscordModal = ({ isOpen, onClose }: Props): JSX.Element => {
     join: { description },
   } = platformsContent.DISCORD
   const { discordId: idKnownOnBackend } = useUser()
+  const router = useRouter()
 
   const { onOpen, fetcherWithDCAuth, error, isAuthenticating } =
     useDCAuth("identify")
@@ -59,7 +61,7 @@ const JoinDiscordModal = ({ isOpen, onClose }: Props): JSX.Element => {
     onSubmit,
     error: joinError,
     isSigning,
-  } = useJoinPlatform("DISCORD", dcUserId)
+  } = useJoinPlatform("DISCORD", router.query.discordId ?? dcUserId)
 
   const handleSubmit = () => {
     setHideDCAuthNotification(true)
@@ -124,6 +126,7 @@ const JoinDiscordModal = ({ isOpen, onClose }: Props): JSX.Element => {
           {/* margin is applied on AuthButton, so there's no jump when it collapses and unmounts */}
           <VStack spacing="0" alignItems="strech" w="full">
             {!idKnownOnBackend &&
+              !router.query.discordId &&
               (dcUserId?.length > 0 ? (
                 <Collapse in={!hideDCAuthNotification} unmountOnExit>
                   <ModalButton
@@ -154,20 +157,24 @@ const JoinDiscordModal = ({ isOpen, onClose }: Props): JSX.Element => {
                 </ModalButton>
               ))}
 
-            {(() => {
-              if (!dcUserId && !idKnownOnBackend)
+            {!response &&
+              (() => {
+                if (!idKnownOnBackend && !dcUserId && !router.query.discordId)
+                  return (
+                    <ModalButton disabled colorScheme="gray">
+                      Verify address
+                    </ModalButton>
+                  )
+                if (isSigning)
+                  return <ModalButton isLoading loadingText="Check your wallet" />
+                if (isLoading)
+                  return (
+                    <ModalButton isLoading loadingText="Generating invite link" />
+                  )
                 return (
-                  <ModalButton disabled colorScheme="gray">
-                    Verify address
-                  </ModalButton>
+                  <ModalButton onClick={handleSubmit}>Verify address</ModalButton>
                 )
-              if (isSigning)
-                return <ModalButton isLoading loadingText="Check your wallet" />
-              if (isLoading)
-                return <ModalButton isLoading loadingText="Generating invite link" />
-
-              return <ModalButton onClick={handleSubmit}>Verify address</ModalButton>
-            })()}
+              })()}
           </VStack>
         </ModalFooter>
       </ModalContent>
