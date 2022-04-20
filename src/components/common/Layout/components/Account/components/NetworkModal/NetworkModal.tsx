@@ -7,17 +7,17 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react"
-import { useWeb3React } from "@web3-react/core"
 import { Error } from "components/common/Error"
 import { Modal } from "components/common/Modal"
 import processConnectionError from "components/_app/Web3ConnectionManager/components/WalletSelectorModal/utils/processConnectionError"
 import { supportedChains, walletConnect } from "connectors"
 import useToast from "hooks/useToast"
+import web3React from "web3React"
 import NetworkButton from "./components/NetworkButton"
 import requestNetworkChange from "./utils/requestNetworkChange"
 
 const NetworkModal = ({ isOpen, onClose }) => {
-  const { error, connector, active } = useWeb3React()
+  const { error, connector, active } = web3React.useWeb3React()
   const toast = useToast()
 
   const requestManualNetworkChange = (chain) => () =>

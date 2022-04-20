@@ -9,7 +9,6 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { useWeb3React } from "@web3-react/core"
 import Button from "components/common/Button"
 import CopyableAddress from "components/common/CopyableAddress"
 import GuildAvatar from "components/common/GuildAvatar"
@@ -17,11 +16,12 @@ import { Modal } from "components/common/Modal"
 import useUser from "components/[guild]/hooks/useUser"
 import { injected, walletConnect, walletLink } from "connectors"
 import { useContext } from "react"
+import web3React from "web3React"
 import { Web3Connection } from "../../../../../../_app/Web3ConnectionManager"
 import AccountConnections from "./components/AccountConnections"
 
 const AccountModal = ({ isOpen, onClose }) => {
-  const { account, connector } = useWeb3React()
+  const { account, connector } = web3React.useWeb3React()
   const { openWalletSelectorModal } = useContext(Web3Connection)
   const { discordId, telegramId, isLoading } = useUser()
   const modalFooterBg = useColorModeValue("gray.100", "gray.800")

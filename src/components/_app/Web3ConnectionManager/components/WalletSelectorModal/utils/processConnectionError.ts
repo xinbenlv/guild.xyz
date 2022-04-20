@@ -1,4 +1,3 @@
-import { UnsupportedChainIdError } from "@web3-react/core"
 import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
@@ -6,6 +5,7 @@ import {
 import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from "@web3-react/walletconnect-connector"
 import { ErrorInfo } from "components/common/Error"
 import { WalletError } from "types"
+import web3React from "web3React"
 
 const processConnectionError = (error: WalletError & Error): ErrorInfo => {
   switch (error.constructor) {
@@ -15,7 +15,7 @@ const processConnectionError = (error: WalletError & Error): ErrorInfo => {
         description:
           "No Ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile.",
       }
-    case UnsupportedChainIdError:
+    case web3React.UnsupportedChainIdError:
       return {
         title: "Wrong network",
         description:

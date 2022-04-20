@@ -17,13 +17,13 @@ import {
 import MetaMaskOnboarding from "@metamask/onboarding"
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AbstractConnector } from "@web3-react/abstract-connector"
-import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core"
 import { Error } from "components/common/Error"
 import Link from "components/common/Link"
 import { Modal } from "components/common/Modal"
 import { injected, walletConnect, walletLink } from "connectors"
 import { ArrowSquareOut } from "phosphor-react"
 import React, { useEffect, useRef } from "react"
+import web3React from "web3React"
 import ConnectorButton from "./components/ConnectorButton"
 import processConnectionError from "./utils/processConnectionError"
 
@@ -45,7 +45,7 @@ const WalletSelectorModal = ({
   const addDatadogAction = useRumAction("trackingAppAction")
   const addDatadogError = useRumError()
 
-  const { active, activate, connector, setError, error } = useWeb3React()
+  const { active, activate, connector, setError, error } = web3React.useWeb3React()
 
   // initialize metamask onboarding
   const onboarding = useRef<MetaMaskOnboarding>()
@@ -68,7 +68,7 @@ const WalletSelectorModal = ({
   }, [active, closeModal])
 
   useEffect(() => {
-    if (error instanceof UnsupportedChainIdError) {
+    if (error instanceof web3React.UnsupportedChainIdError) {
       closeModal()
       openNetworkModal()
     }

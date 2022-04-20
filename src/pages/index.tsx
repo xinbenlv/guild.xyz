@@ -12,7 +12,6 @@ import {
   Text,
   useColorMode,
 } from "@chakra-ui/react"
-import { useWeb3React } from "@web3-react/core"
 import AddCard from "components/common/AddCard"
 import Layout from "components/common/Layout"
 import useUpvoty from "components/common/Layout/components/InfoMenu/hooks/useUpvoty"
@@ -32,6 +31,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import useSWR from "swr"
 import { GuildBase } from "types"
 import fetcher from "utils/fetcher"
+import web3React from "web3React"
 
 const AnimatedLogo = dynamic(() => import("components/index/AnimatedLogo"), {
   ssr: false,
@@ -44,7 +44,7 @@ type Props = {
 }
 
 const Page = ({ guilds: guildsInitial }: Props): JSX.Element => {
-  const { account } = useWeb3React()
+  const { account } = web3React.useWeb3React()
   const [search, setSearch] = useQueryState<string>("search", undefined)
   const [order, setOrder] = useQueryState<OrderOptions>("order", "members")
 

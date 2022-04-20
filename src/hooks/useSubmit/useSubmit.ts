@@ -1,11 +1,11 @@
 import { keccak256 } from "@ethersproject/keccak256"
 import type { Web3Provider } from "@ethersproject/providers"
 import { toUtf8Bytes } from "@ethersproject/strings"
-import { useWeb3React } from "@web3-react/core"
 import { useMachine } from "@xstate/react"
 import { randomBytes } from "crypto"
 import stringify from "fast-json-stable-stringify"
 import { useRef, useState } from "react"
+import web3React from "web3React"
 import createFetchMachine from "./utils/fetchMachine"
 
 type Options<ResponseType> = {
@@ -66,7 +66,7 @@ const useSubmitWithSign = <DataType, ResponseType>(
   fetch: ({ data: DataType, validation: Validation }) => Promise<ResponseType>,
   options: Options<ResponseType> = {}
 ) => {
-  const { account, library } = useWeb3React()
+  const { account, library } = web3React.useWeb3React()
   const [isSigning, setIsSigning] = useState<boolean>(false)
 
   const useSubmitResponse = useSubmit<DataType, ResponseType>(

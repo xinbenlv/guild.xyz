@@ -1,11 +1,11 @@
 import { useRumAction, useRumError } from "@datadog/rum-react-integration"
-import { useWeb3React } from "@web3-react/core"
 import useGuild from "components/[guild]/hooks/useGuild"
 import { useSubmitWithSign } from "hooks/useSubmit"
 import { WithValidation } from "hooks/useSubmit/useSubmit"
 import { mutate } from "swr"
 import { PlatformName } from "types"
 import fetcher from "utils/fetcher"
+import web3React from "web3React"
 
 type Response = {
   inviteLink: string
@@ -13,7 +13,7 @@ type Response = {
 }
 
 const useJoinPlatform = (platform: PlatformName, platformUserId: string) => {
-  const { account, library } = useWeb3React()
+  const { account, library } = web3React.useWeb3React()
   const addDatadogAction = useRumAction("trackingAppAction")
   const addDatadogError = useRumError()
 

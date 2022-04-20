@@ -1,6 +1,5 @@
 import { Text, ToastId } from "@chakra-ui/react"
 import { useRumAction, useRumError } from "@datadog/rum-react-integration"
-import { useWeb3React } from "@web3-react/core"
 import Button from "components/common/Button"
 import useJsConfetti from "components/create-guild/hooks/useJsConfetti"
 import useMatchMutate from "hooks/useMatchMutate"
@@ -16,6 +15,7 @@ import { PlatformName, Role } from "types"
 import fetcher from "utils/fetcher"
 import replacer from "utils/guildJsonReplacer"
 import preprocessRequirements from "utils/preprocessRequirements"
+import web3React from "web3React"
 
 type FormInputs = {
   platform?: PlatformName
@@ -29,7 +29,7 @@ const useCreateRole = () => {
   const addDatadogAction = useRumAction("trackingAppAction")
   const addDatadogError = useRumError()
   const toastIdRef = useRef<ToastId>()
-  const { account } = useWeb3React()
+  const { account } = web3React.useWeb3React()
 
   const { mutate } = useSWRConfig()
   const matchMutate = useMatchMutate()

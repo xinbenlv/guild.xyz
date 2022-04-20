@@ -5,13 +5,13 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react"
-import { useWeb3React } from "@web3-react/core"
 import StyledSelect from "components/common/StyledSelect"
 import OptionImage from "components/common/StyledSelect/components/CustomSelectOption/components/OptionImage"
 import { Chains, RPC, supportedChains as defaultSupportedChains } from "connectors"
 import { useEffect, useMemo } from "react"
 import { Controller, useFormContext, useWatch } from "react-hook-form"
 import { SelectOption, SupportedChains } from "types"
+import web3React from "web3React"
 
 type Props = {
   controlName: string
@@ -35,7 +35,7 @@ const ChainPicker = ({
 }: Props): JSX.Element => {
   const { setValue } = useFormContext()
 
-  const { chainId } = useWeb3React()
+  const { chainId } = web3React.useWeb3React()
   const chain = useWatch({ name: controlName })
 
   const mappedSupportedChains = useMemo(

@@ -10,11 +10,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { useWeb3React } from "@web3-react/core"
 import Button from "components/common/Button"
 import Section from "components/common/Section"
 import useUser from "components/[guild]/hooks/useUser"
 import { ArrowClockwise, Question } from "phosphor-react"
+import web3React from "web3React"
 import LinkedAddress from "./LinkedAddress"
 import LinkedSocialAccount from "./LinkedSocialAccount"
 
@@ -30,7 +30,7 @@ const AccountConnections = () => {
     discord,
     telegram,
   } = useUser()
-  const { account } = useWeb3React()
+  const { account } = web3React.useWeb3React()
 
   return (
     <Stack spacing="10" w="full">

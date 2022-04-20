@@ -1,8 +1,8 @@
 import { Tooltip, useDisclosure } from "@chakra-ui/react"
-import { useWeb3React } from "@web3-react/core"
 import Button from "components/common/Button"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
+import web3React from "web3React"
 import useAccess from "../../hooks/useAccess"
 import useJoinSuccessToast from "./components/JoinModal/hooks/useJoinSuccessToast"
 import JoinDiscordModal from "./components/JoinModal/JoinDiscordModal"
@@ -19,7 +19,7 @@ type Props = {
 const styleProps = { h: 10, flexShrink: 0 }
 
 const JoinButton = ({ platform, roleIds }: Props): JSX.Element => {
-  const { active } = useWeb3React()
+  const { active } = web3React.useWeb3React()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { hasAccess, isLoading } = useAccess(roleIds)
