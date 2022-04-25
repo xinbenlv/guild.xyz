@@ -50,7 +50,7 @@ Cypress.Commands.add("connectWallet", () => {
 })
 
 Cypress.Commands.add("mockWallet", () => {
-  cy.stub(web3React, "useWeb3React").callsFake(() => ({
+  cy.stub(web3React, "useWeb3React").returns({
     address: Cypress.env("address"),
     active: true,
     library: {
@@ -58,7 +58,8 @@ Cypress.Commands.add("mockWallet", () => {
       getSigner: () => wallet,
     },
     chainId: Cypress.env("chainId"),
-  }))
+  })
+  cy.stub(web3React, "Web3ReactProvider").callsFake((props) => <div {...props} />)
 })
 
 Cypress.Commands.add("mockNext", (props) => {

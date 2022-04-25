@@ -1,5 +1,6 @@
 import type { ExternalProvider, JsonRpcFetchFunc } from "@ethersproject/providers"
 import { Web3Provider } from "@ethersproject/providers"
+import { Web3ReactProvider } from "@web3-react/core"
 import Chakra from "components/_app/Chakra"
 import Datadog from "components/_app/Datadog"
 import { Web3ConnectionManager } from "components/_app/Web3ConnectionManager"
@@ -11,7 +12,6 @@ import { Fragment } from "react"
 import { SWRConfig } from "swr"
 import "theme/custom-scrollbar.css"
 import fetcher from "utils/fetcher"
-import web3React from "web3React"
 
 const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc) =>
   new Web3Provider(provider)
@@ -32,13 +32,13 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
         }}
       >
         <SWRConfig value={{ fetcher }}>
-          <web3React.Web3ReactProvider getLibrary={getLibrary}>
+          <Web3ReactProvider getLibrary={getLibrary}>
             <Web3ConnectionManager>
               <DatadogComponent>
                 <Component {...pageProps} />
               </DatadogComponent>
             </Web3ConnectionManager>
-          </web3React.Web3ReactProvider>
+          </Web3ReactProvider>
         </SWRConfig>
       </IconContext.Provider>
     </Chakra>
