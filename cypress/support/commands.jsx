@@ -26,6 +26,7 @@
 
 import * as nextRouter from "next/router"
 import * as nextLink from "next/link"
+import * as nextDistLink from "next/dist/client/link"
 
 import * as web3React from "@web3-react/core"
 import { getDefaultProvider } from "@ethersproject/providers"
@@ -64,10 +65,7 @@ Cypress.Commands.add("mockWallet", () => {
 
 Cypress.Commands.add("mockNext", (props) => {
   const router = {
-    pathname: "/testPath",
-    route: "/testPath",
     query: {},
-    asPath: "/testPath",
     components: {},
     isFallback: false,
     basePath: "",
@@ -78,8 +76,12 @@ Cypress.Commands.add("mockNext", (props) => {
     back: cy.spy(),
     prefetch: cy.spy(),
     beforePopState: cy.spy(),
+    asPath: props?.path ?? "",
+    pathname: props?.path ?? "",
+    route: props?.path ?? "",
     ...props,
   }
-  cy.stub(nextRouter, "useRouter").returns(router)
+  // cy.stub(nextRouter, "useRouter").returns(router)
   cy.stub(nextLink, "default").callsFake((props) => <div {...props} />)
+  // cy.stub(nextDistLink, "default").callsFake((props) => <div {...props} />)
 })

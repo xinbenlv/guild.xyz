@@ -13,5 +13,6 @@
     "address": "0xd8218027F904e9a3Ce6F9C281401f067b482B740",
     "chainId": 5
   },
-  "projectId": "kbncm6"
+  "projectId": "kbncm6",
+  "componentFolder": "cypress/pages"
 }
