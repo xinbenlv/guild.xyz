@@ -1,4 +1,5 @@
-import { Text, ToastId, usePrevious } from "@chakra-ui/react"
+import { Text, ToastId, useColorModeValue, usePrevious } from "@chakra-ui/react"
+import { useWeb3React } from "@web3-react/core"
 import Button from "components/common/Button"
 import useGuild from "components/[guild]/hooks/useGuild"
 import useMatchMutate from "hooks/useMatchMutate"
@@ -7,12 +8,11 @@ import { useRouter } from "next/router"
 import { TwitterLogo } from "phosphor-react"
 import { useEffect, useRef, useState } from "react"
 import { useSWRConfig } from "swr"
-import web3React from "web3React"
 import useIsMember from "../../../hooks/useIsMember"
 import { PlatformName } from "../../../platformsContent"
 
 const useJoinSuccessToast = (onClose, platform: PlatformName) => {
-  const { account } = web3React.useWeb3React()
+  const { account } = useWeb3React()
   const toast = useToast()
   const [prevAccount, setPrevAccount] = useState(account)
   const isMember = useIsMember()
@@ -22,6 +22,7 @@ const useJoinSuccessToast = (onClose, platform: PlatformName) => {
   const router = useRouter()
   const toastIdRef = useRef<ToastId>()
   const guild = useGuild()
+  const tweetButtonBackground = useColorModeValue("blackAlpha.100", undefined)
 
   useEffect(() => {
     /**
@@ -57,6 +58,7 @@ const useJoinSuccessToast = (onClose, platform: PlatformName) => {
 guild.xyz/${guild.urlName} @guildxyz`
             )}`}
             target="_blank"
+            bg={tweetButtonBackground}
             leftIcon={<TwitterLogo weight="fill" />}
             size="sm"
             onClick={() => toast.close(toastIdRef.current)}
