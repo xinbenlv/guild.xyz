@@ -1,3 +1,4 @@
+import { useWeb3React } from "@web3-react/core"
 import useMatchMutate from "hooks/useMatchMutate"
 import useShowErrorToast from "hooks/useShowErrorToast"
 import { useSubmitWithSign } from "hooks/useSubmit"
@@ -5,7 +6,6 @@ import { WithValidation } from "hooks/useSubmit/useSubmit"
 import useToast from "hooks/useToast"
 import { mutate } from "swr"
 import fetcher from "utils/fetcher"
-import web3React from "web3React"
 
 type Data = {
   guildId: number
@@ -13,7 +13,7 @@ type Data = {
 type Response = any
 
 const useLeaveGuild = () => {
-  const { account } = web3React.useWeb3React()
+  const { account } = useWeb3React()
   const toast = useToast()
   const showErrorToast = useShowErrorToast()
   const matchMutate = useMatchMutate()

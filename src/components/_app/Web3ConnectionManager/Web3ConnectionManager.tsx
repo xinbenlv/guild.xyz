@@ -2,11 +2,11 @@ import { useDisclosure } from "@chakra-ui/react"
 import { useRumAction } from "@datadog/rum-react-integration"
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AbstractConnector } from "@web3-react/abstract-connector"
+import { useWeb3React } from "@web3-react/core"
 import NetworkModal from "components/common/Layout/components/Account/components/NetworkModal/NetworkModal"
 import { injected, walletConnect, walletLink } from "connectors"
 import { useRouter } from "next/router"
 import { createContext, PropsWithChildren, useEffect, useState } from "react"
-import web3React from "web3React"
 import WalletSelectorModal from "./components/WalletSelectorModal"
 import useEagerConnect from "./hooks/useEagerConnect"
 import useInactiveListener from "./hooks/useInactiveListener"
@@ -26,7 +26,7 @@ const Web3ConnectionManager = ({
 }: PropsWithChildren<any>): JSX.Element => {
   const addDatadogAction = useRumAction("trackingAppAction")
 
-  const { connector, active } = web3React.useWeb3React()
+  const { connector, active } = useWeb3React()
   const {
     isOpen: isWalletSelectorModalOpen,
     onOpen: openWalletSelectorModal,

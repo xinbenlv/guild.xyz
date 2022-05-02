@@ -1,5 +1,5 @@
+import { useWeb3React } from "@web3-react/core"
 import useSWR from "swr"
-import web3React from "web3React"
 
 type Response = Array<{
   guildId: number
@@ -7,7 +7,7 @@ type Response = Array<{
 }>
 
 const useMemberships = () => {
-  const { account } = web3React.useWeb3React()
+  const { account } = useWeb3React()
 
   const shouldFetch = !!account
 

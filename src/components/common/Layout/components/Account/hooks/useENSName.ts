@@ -1,11 +1,11 @@
 import type { Web3Provider } from "@ethersproject/providers"
+import { useWeb3React } from "@web3-react/core"
 import useSWR from "swr"
-import web3React from "web3React"
 
 const fetchENSName = (_, library, address) => library.lookupAddress(address)
 
 const useENSName = (address: string): string => {
-  const { library, chainId } = web3React.useWeb3React<Web3Provider>()
+  const { library, chainId } = useWeb3React<Web3Provider>()
 
   const shouldFetch = library && address
 

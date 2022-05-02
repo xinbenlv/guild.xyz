@@ -1,12 +1,12 @@
+import { useWeb3React } from "@web3-react/core"
 import { useRouter } from "next/router"
 import { useEffect, useMemo } from "react"
 import useSWRImmutable from "swr/immutable"
-import web3React from "web3React"
 
 const DEFAULT_URL = "https://roadmap.guild.xyz/?__force"
 
 const useUpvoty = () => {
-  const { account } = web3React.useWeb3React()
+  const { account } = useWeb3React()
   const router = useRouter()
   const redirectUrl = useMemo(
     () => router.query.redirectUrl ?? DEFAULT_URL,

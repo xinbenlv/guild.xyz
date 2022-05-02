@@ -1,8 +1,8 @@
+import { useWeb3React } from "@web3-react/core"
 import { useSubmitWithSign } from "hooks/useSubmit/useSubmit"
 import { useEffect } from "react"
 import useSWR from "swr"
 import { User } from "types"
-import web3React from "web3React"
 
 const getlinkedAddressesCount = (addresses: string[] | number) => {
   if (!addresses) return
@@ -11,7 +11,7 @@ const getlinkedAddressesCount = (addresses: string[] | number) => {
 }
 
 const useUser = () => {
-  const { account } = web3React.useWeb3React()
+  const { account } = useWeb3React()
 
   const { isSigning, onSubmit, response } = useSubmitWithSign(
     async ({ validation }) => ({

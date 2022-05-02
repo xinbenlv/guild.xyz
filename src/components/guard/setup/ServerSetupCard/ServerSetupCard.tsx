@@ -1,4 +1,5 @@
 import { SimpleGrid, Stack } from "@chakra-ui/react"
+import { useWeb3React } from "@web3-react/core"
 import Button from "components/common/Button"
 import Card from "components/common/Card"
 import CardMotionWrapper from "components/common/CardMotionWrapper"
@@ -12,13 +13,12 @@ import useUploadPromise from "hooks/useUploadPromise"
 import { useRouter } from "next/router"
 import { useContext, useEffect, useMemo, useState } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
-import web3React from "web3React"
 import useGuildByPlatformId from "../hooks/useGuildByPlatformId"
 import Disclaimer from "./components/Disclaimer"
 import PickSecurityLevel from "./components/PickSecurityLevel/PickSecurityLevel"
 
 const ServerSetupCard = (): JSX.Element => {
-  const { account } = web3React.useWeb3React()
+  const { account } = useWeb3React()
   const { openWalletSelectorModal } = useContext(Web3Connection)
   const router = useRouter()
 

@@ -1,7 +1,7 @@
 import { Icon, Spinner, useColorModeValue } from "@chakra-ui/react"
+import { useWeb3React } from "@web3-react/core"
 import useAccess from "components/[guild]/RolesByPlatform/hooks/useAccess"
 import { Check, LockSimple, Warning, X } from "phosphor-react"
-import web3React from "web3React"
 import AccessIndicatorUI from "./components/AccessIndicatorUI"
 import CenterIcon from "./components/CenterIcon"
 
@@ -10,7 +10,7 @@ type Props = {
 }
 
 const AccessIndicator = ({ roleId }: Props): JSX.Element => {
-  const { active } = web3React.useWeb3React()
+  const { active } = useWeb3React()
   const { hasAccess, error, isLoading } = useAccess([roleId])
   const gray = useColorModeValue("gray", "gray.400")
 

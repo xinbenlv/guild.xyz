@@ -1,9 +1,9 @@
+import { useWeb3React } from "@web3-react/core"
 import useGuild from "components/[guild]/hooks/useGuild"
 import useSWR from "swr"
-import web3React from "web3React"
 
 const useAccess = (roleIds?: number[]) => {
-  const { account } = web3React.useWeb3React()
+  const { account } = useWeb3React()
   const { id } = useGuild()
 
   const shouldFetch = account

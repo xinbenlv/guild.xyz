@@ -1,12 +1,12 @@
 import { Web3Provider } from "@ethersproject/providers"
+import { useWeb3React } from "@web3-react/core"
 import { injected } from "connectors"
 import { useEffect } from "react"
-import web3React from "web3React"
 
 type WindowType = Window & typeof globalThis & { ethereum: Web3Provider }
 
 const useInactiveListener = (suppress = false): void => {
-  const { active, activate } = web3React.useWeb3React()
+  const { active, activate } = useWeb3React()
 
   useEffect((): any => {
     const { ethereum } = window as WindowType
