@@ -6,6 +6,7 @@ import getMockRouter from "./utils/getMockRouter"
 import setup from "./utils/setup"
 
 setup()
+vi.mock("@web3-react/core", require("../__mocks__/@web3-react/core"))
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()
@@ -20,7 +21,7 @@ beforeEach(async () => {
 })
 
 describe("index page with wallet", () => {
-  // mockWallet()
+  beforeAll(() => {})
 
   it("wallet is connected", () => {
     expect(screen.getAllByText(/0x[a-f0-9\.]+/i)).toBeDefined()
