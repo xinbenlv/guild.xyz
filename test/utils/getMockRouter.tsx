@@ -2,7 +2,7 @@ import { RouterContext } from "next/dist/shared/lib/router-context"
 import { NextRouter } from "next/router"
 import { vi } from "vitest"
 
-const getMockRouter = (props?: NextRouter & { path: string }) => {
+const getMockRouter = (props?: Partial<NextRouter & { path: string }>) => {
   const router = {
     query: {},
     components: {},
@@ -19,7 +19,7 @@ const getMockRouter = (props?: NextRouter & { path: string }) => {
     pathname: props?.path || "/",
     route: props?.path || "/",
     ...props,
-  }
+  } as NextRouter
 
   return {
     router,

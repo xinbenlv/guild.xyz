@@ -3,10 +3,6 @@ import IndexPage from "../src/pages"
 import App from "../src/pages/_app"
 import fetcher from "./utils/fetcher"
 import getMockRouter from "./utils/getMockRouter"
-import setup from "./utils/setup"
-
-setup()
-vi.mock("@web3-react/core")
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()

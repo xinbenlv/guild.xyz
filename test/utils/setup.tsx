@@ -1,5 +1,7 @@
-const setup = () => {
+if (!globalThis.defined) {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
+
+  vi.mock("@web3-react/core")
 
   beforeEach(() => {
     Object.defineProperty(window, "matchMedia", {
@@ -16,6 +18,8 @@ const setup = () => {
       })),
     })
   })
+
+  globalThis.defined = true
 }
 
-export default setup
+export {}
