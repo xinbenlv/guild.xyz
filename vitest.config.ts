@@ -7,12 +7,16 @@ import { defineConfig } from "vitest/config"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tsconfigPaths(), react()],
+  plugins: [tsconfigPaths({ root: ".." }), react()],
   test: {
     environment: "jsdom",
     deps: {
       inline: ["framer-motion"],
     },
     globals: true,
+    mockReset: true,
+    clearMocks: true,
+    root: "./test",
   },
+  root: "./test",
 })

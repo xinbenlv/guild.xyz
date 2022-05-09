@@ -6,7 +6,7 @@ import getMockRouter from "./utils/getMockRouter"
 import setup from "./utils/setup"
 
 setup()
-vi.mock("@web3-react/core", require("../__mocks__/@web3-react/core"))
+vi.mock("@web3-react/core")
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()
