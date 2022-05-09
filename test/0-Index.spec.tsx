@@ -6,6 +6,7 @@ import getMockRouter from "./utils/getMockRouter"
 import setup from "./utils/setup"
 
 setup()
+vi.mock("@web3-react/core")
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()
@@ -24,9 +25,11 @@ describe("index page", () => {
     expect(screen.getByText(/^guild$/i)).toBeDefined()
   })
 
-  describe("without wallet", () => {
-    it("connect button exists", () => {
-      expect(screen.getAllByText(/connect to a wallet/i)).length.to.be.greaterThan(0)
-    })
+  it("wallet is connected", () => {
+    expect(screen.getAllByText(/0x[a-f0-9\.]+/i)).toBeDefined()
+  })
+
+  it("create button appears", () => {
+    expect(screen.getAllByText(/create guild/i)).toBeDefined()
   })
 })
