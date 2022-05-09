@@ -3,6 +3,9 @@ import CreatePage from "../src/pages/create-guild"
 import App from "../src/pages/_app"
 import fetcher from "./utils/fetcher"
 import getMockRouter from "./utils/getMockRouter"
+import mockDiscordServers from "./utils/mockDiscordServers"
+
+mockDiscordServers()
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()
@@ -21,11 +24,7 @@ describe("create page", () => {
     expect(screen.getByText(/^choose platform$/i)).toBeDefined()
   })
 
-  /* it("can select Discord", () => {
-    screen.getByTestId(/select server/i).click()
-    window.postMessage({
-      type: "DC_AUTH_SUCCESS",
-      data: "Bearer 12345",
-    })
-  }) */
+  it("can select Discord", async () => {
+    screen.getByText(/select server/i).click()
+  })
 })
