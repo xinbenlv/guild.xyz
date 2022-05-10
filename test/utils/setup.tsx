@@ -1,3 +1,5 @@
+import * as mocks from "../spies"
+
 if (!globalThis.defined) {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
@@ -17,6 +19,10 @@ if (!globalThis.defined) {
         dispatchEvent: vi.fn(),
       })),
     })
+  })
+
+  beforeEach(() => {
+    Object.values(mocks).forEach((mock) => mock())
   })
 
   globalThis.defined = true

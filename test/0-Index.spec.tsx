@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import IndexPage from "../src/pages"
 import App from "../src/pages/_app"
-import fetcher from "./utils/fetcher"
 import getMockRouter from "./utils/getMockRouter"
+import fetcher from "./utils/nodeFetcher"
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()

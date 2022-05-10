@@ -77,6 +77,7 @@ const DCServerCard = ({ serverData, onSelect, onCancel }: Props): JSX.Element =>
           colorScheme="green"
           onClick={() => onSelect(serverData.id)}
           data-dd-action-name="Select [dc server setup]"
+          data-testid="select-server-button"
         >
           Select
         </Button>

@@ -1,20 +1,16 @@
-import { render, screen } from "@testing-library/react"
-import { spy } from "../src/hooks/__mocks__/useUsersServers"
+import { render, screen, waitFor } from "@testing-library/react"
 import CreatePage from "../src/pages/create-guild/discord"
 import App from "../src/pages/_app"
-import fetcher from "./utils/fetcher"
+import { useDCAuthSpy } from "./spies/useDCAuth.spy"
+import { useUsersServersSpy } from "./spies/useUsersServers.spy"
 import getMockRouter from "./utils/getMockRouter"
-
-vi.mock("../src/hooks/useUsersServers")
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()
 
-  const guilds = await fetcher(`/guild?sort=members`)
-
   render(
     <RouterProvider>
-      <App router={undefined} Component={CreatePage as any} pageProps={{ guilds }} />
+      <App router={undefined} Component={CreatePage as any} pageProps={{}} />
     </RouterProvider>
   )
 })
@@ -22,7 +18,15 @@ beforeEach(async () => {
 describe("create page", () => {
   it("renders", () => {
     expect(screen.getByText(/create guild on discord/i)).toBeDefined()
-    // expect(screen.getByText(/select/i)).toBeDefined()
-    expect(spy).toBeCalled()
+
+    expect(useDCAuthSpy).toBeCalledWith("guilds")
+    expect(useUsersServersSpy).toBeCalledWith("Bearer 12345")
+
+    waitFor(() => {
+      expect(screen.getByTestId("select-server-button")).toBeDefined()
+      screen.getByTestId("select-server-button").click()
+
+      expect(screen.getByText(/sign to summon/i)).toBeDefined()
+    })
   })
 })
