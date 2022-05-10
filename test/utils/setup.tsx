@@ -1,5 +1,5 @@
 import { readdir } from "fs/promises"
-import path from "path"
+import { join, resolve } from "path"
 
 if (!globalThis.defined) {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
@@ -22,10 +22,10 @@ if (!globalThis.defined) {
     })
   })
 
-  const spiesDir = path.resolve(path.join(__dirname, "..", "spies"))
+  const spiesDir = resolve(join(__dirname, "..", "spies"))
 
   readdir(spiesDir).then((files) =>
-    Promise.all(files.map((file) => import(path.join(spiesDir, file))))
+    Promise.all(files.map((file) => import(join(spiesDir, file))))
   )
 
   globalThis.defined = true
