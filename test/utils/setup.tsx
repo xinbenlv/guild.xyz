@@ -1,4 +1,5 @@
-import * as mocks from "../spies"
+import { readdir } from "fs/promises"
+import path from "path"
 
 if (!globalThis.defined) {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
@@ -21,9 +22,11 @@ if (!globalThis.defined) {
     })
   })
 
-  beforeEach(() => {
-    Object.values(mocks).forEach((mock) => mock())
-  })
+  const spiesDir = path.resolve(path.join(__dirname, "..", "spies"))
+
+  readdir(spiesDir).then((files) =>
+    Promise.all(files.map((file) => import(path.join(spiesDir, file))))
+  )
 
   globalThis.defined = true
 }

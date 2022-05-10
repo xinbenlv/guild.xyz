@@ -11,7 +11,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     deps: {
-      inline: ["framer-motion"],
+      inline: ["framer-motion", ""],
     },
     globals: true,
     mockReset: true,

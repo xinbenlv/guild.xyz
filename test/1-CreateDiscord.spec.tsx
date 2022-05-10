@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react"
 import CreatePage from "../src/pages/create-guild/discord"
 import App from "../src/pages/_app"
-import { useDCAuthSpy } from "./spies/useDCAuth.spy"
-import { useUsersServersSpy } from "./spies/useUsersServers.spy"
+import useDCAuthSpy from "./spies/useDCAuth.spy"
+import useUsersServersSpy from "./spies/useUsersServers.spy"
 import getMockRouter from "./utils/getMockRouter"
 
 beforeEach(async () => {
@@ -27,6 +27,7 @@ describe("create page", () => {
       screen.getByTestId("select-server-button").click()
 
       expect(screen.getByText(/sign to summon/i)).toBeDefined()
+      screen.getByText(/sign to summon/i).click()
     })
   })
 })

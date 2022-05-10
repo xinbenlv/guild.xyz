@@ -1,9 +1,9 @@
 import * as useUsersServers from "../../src/hooks/useUsersServers"
 
-let useUsersServersSpy = null
+const useUsersServersSpy = vi.spyOn(useUsersServers, "default")
 
-const mock = () =>
-  (useUsersServersSpy = vi.spyOn(useUsersServers, "default").mockReturnValue({
+beforeEach(() => {
+  useUsersServersSpy.mockReturnValue({
     servers: [
       {
         img: "",
@@ -15,7 +15,7 @@ const mock = () =>
     isValidating: false,
     mutate: vi.fn(),
     error: null,
-  }))
+  })
+})
 
-export { useUsersServersSpy }
-export default mock
+export default useUsersServersSpy

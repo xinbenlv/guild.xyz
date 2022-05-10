@@ -1,14 +1,14 @@
 import * as useDCAuth from "../../src/components/[guild]/RolesByPlatform/components/JoinButton/components/JoinModal/hooks/useDCAuth"
 
-let useDCAuthSpy = null
+const useDCAuthSpy = vi.spyOn(useDCAuth, "default")
 
-const mock = () =>
-  (useDCAuthSpy = vi.spyOn(useDCAuth, "default").mockReturnValue({
+beforeEach(() => {
+  useDCAuthSpy.mockReturnValue({
     authorization: "Bearer 12345",
     error: null,
     onOpen: vi.fn(),
     isAuthenticating: false,
-  }))
+  })
+})
 
-export { useDCAuthSpy }
-export default mock
+export default useDCAuthSpy
