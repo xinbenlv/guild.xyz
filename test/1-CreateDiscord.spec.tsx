@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react"
-import CreatePage from "../src/pages/create-guild"
+import { spy } from "../src/hooks/__mocks__/useUsersServers"
+import CreatePage from "../src/pages/create-guild/discord"
 import App from "../src/pages/_app"
 import fetcher from "./utils/fetcher"
 import getMockRouter from "./utils/getMockRouter"
-import mockDiscordServers from "./utils/mockDiscordServers"
 
-mockDiscordServers()
+vi.mock("../src/hooks/useUsersServers")
 
 beforeEach(async () => {
   const { RouterProvider } = getMockRouter()
@@ -21,10 +21,8 @@ beforeEach(async () => {
 
 describe("create page", () => {
   it("renders", () => {
-    expect(screen.getByText(/^choose platform$/i)).toBeDefined()
-  })
-
-  it("can select Discord", async () => {
-    screen.getByText(/select server/i).click()
+    expect(screen.getByText(/create guild on discord/i)).toBeDefined()
+    // expect(screen.getByText(/select/i)).toBeDefined()
+    expect(spy).toBeCalled()
   })
 })
