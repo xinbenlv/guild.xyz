@@ -1,8 +1,11 @@
 import { readdir } from "fs/promises"
+import fetch from "node-fetch"
 import { join, resolve } from "path"
+import { vi } from "vitest"
 
 if (!globalThis.defined) {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
+  globalThis.fetch = fetch as any
 
   vi.mock("@web3-react/core")
 
@@ -25,7 +28,11 @@ if (!globalThis.defined) {
   const spiesDir = resolve(join(__dirname, "..", "spies"))
 
   readdir(spiesDir).then((files) =>
-    Promise.all(files.map((file) => import(join(spiesDir, file))))
+    Promise.all(
+      files
+        .filter((file) => file.includes(".spy."))
+        .map((file) => import(join(spiesDir, file)))
+    )
   )
 
   globalThis.defined = true

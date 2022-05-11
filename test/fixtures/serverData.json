@@ -1,0 +1,33 @@
+{
+  "data": {
+    "serverIcon": "https://cdn.discordapp.com/icons/973501817566674984/d006abc42ae94e704ca8bca540b148f0.png",
+    "serverName": "Vitest Gang",
+    "serverId": "973501817566674984",
+    "roles": [
+      {
+        "guild": "973501817566674984",
+        "icon": null,
+        "unicodeEmoji": null,
+        "id": "973502059515097111",
+        "name": "Guild.xyz bot",
+        "color": 0,
+        "hoist": false,
+        "rawPosition": 1,
+        "permissions": "8",
+        "managed": true,
+        "mentionable": false,
+        "createdTimestamp": 1652171377782
+      }
+    ],
+    "isAdmin": true,
+    "membersWithoutRole": 1,
+    "channels": [
+      {
+        "id": "973501817566674987",
+        "name": "general"
+      }
+    ]
+  },
+  "isLoading": false,
+  "error": null
+}

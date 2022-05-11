@@ -145,6 +145,7 @@ const ServerSetupCard = ({ children }): JSX.Element => {
               loadingText={loadingText}
               onClick={handleSubmit(id ? onEditSubmit : onSubmit, console.log)}
               data-dd-action-name="Sign to submit [dc server setup]"
+              data-testid="guild-creation-sign-button"
             >
               Sign to submit
             </Button>

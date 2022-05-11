@@ -29,7 +29,7 @@ type ServerData = {
   membersWithoutRole: number
   serverName: string
   serverId: string
-  categories: Category[]
+  categories?: Category[]
   isAdmin: boolean
   channels?: EntryChannel[]
   roles: Role[]

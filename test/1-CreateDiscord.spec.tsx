@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import CreatePage from "../src/pages/create-guild/discord"
 import App from "../src/pages/_app"
 import useDCAuthSpy from "./spies/useDCAuth.spy"
@@ -21,13 +21,24 @@ describe("create page", () => {
 
     expect(useDCAuthSpy).toBeCalledWith("guilds")
     expect(useUsersServersSpy).toBeCalledWith("Bearer 12345")
+  })
 
-    waitFor(() => {
-      expect(screen.getByTestId("select-server-button")).toBeDefined()
-      screen.getByTestId("select-server-button").click()
+  it("can create guild", async () => {
+    vi.useFakeTimers()
 
-      expect(screen.getByText(/sign to summon/i)).toBeDefined()
-      screen.getByText(/sign to summon/i).click()
+    expect(screen.getByTestId("select-server-button")).toBeDefined()
+
+    screen.getByTestId("select-server-button").click()
+
+    vi.advanceTimersByTime(500)
+
+    expect(screen.getByTestId("guild-creation-sign-button")).toBeDefined()
+    fireEvent.click(screen.getByTestId("guild-creation-sign-button"))
+
+    screen.debug(document, Number.MAX_SAFE_INTEGER)
+
+    await waitFor(() => {
+      expect(screen.getByTestId(/member/i)).toBeDefined()
     })
   })
 })
