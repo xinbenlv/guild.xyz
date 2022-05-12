@@ -1,26 +1,18 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import CreatePage from "../src/pages/create-guild/discord"
-import App from "../src/pages/_app"
 import creationExpectedSubmittedData from "./fixtures/creationExpectedSubmittedData.json"
 import { onSubmitSpy } from "./spies/useCreateGuild.spy"
 import useDCAuthSpy from "./spies/useDCAuth.spy"
 import useUsersServersSpy from "./spies/useUsersServers.spy"
-import getMockRouter from "./utils/getMockRouter"
+import ProvidersWrapper from "./utils/ProvidersWrapper"
 
-beforeEach(async () => {
-  const { RouterProvider } = getMockRouter()
-
-  render(
-    <RouterProvider>
-      <App router={undefined} Component={CreatePage as any} pageProps={{}} />
-    </RouterProvider>
-  )
+beforeEach(() => {
+  render(<ProvidersWrapper Component={CreatePage} />)
 })
 
 describe("create page", () => {
   it("renders", () => {
     expect(screen.getByText(/create guild on discord/i)).toBeDefined()
-
     expect(useDCAuthSpy).toBeCalledWith("guilds")
     expect(useUsersServersSpy).toBeCalledWith("Bearer 12345")
   })
