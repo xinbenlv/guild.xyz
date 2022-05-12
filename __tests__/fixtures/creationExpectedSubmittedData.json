@@ -1,0 +1,7 @@
+{
+  "imageUrl": "https://cdn.discordapp.com/icons/973501817566674984/d006abc42ae94e704ca8bca540b148f0.png",
+  "platform": "DISCORD",
+  "DISCORD": { "platformId": "973501817566674984" },
+  "requirements": [{ "type": "FREE" }],
+  "name": "Vitest Gang"
+}

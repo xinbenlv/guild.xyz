@@ -16,8 +16,8 @@ export default defineConfig({
     globals: true,
     mockReset: true,
     clearMocks: true,
-    root: "./test",
+    root: "./__tests__",
     setupFiles: ["./utils/setup.tsx"],
   },
-  root: "./test",
+  root: "./__tests__",
 })
