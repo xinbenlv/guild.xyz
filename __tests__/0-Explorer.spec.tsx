@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react"
-import IndexPage from "../src/pages"
+import ExplorerPage from "../src/pages/explorer"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
 beforeEach(() => {
-  render(<ProvidersWrapper Component={IndexPage} />)
+  render(<ProvidersWrapper Component={ExplorerPage} />)
 })
 
 describe("index page", () => {

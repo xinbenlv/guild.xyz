@@ -8,6 +8,8 @@ beforeEach(() => {
     onSubmit: onSubmitSpy,
     isLoading: false,
     isSigning: false,
+    response: null,
+    error: null,
   })
 })
 
