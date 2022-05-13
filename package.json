@@ -10,7 +10,11 @@
     "type-check": "tsc --pretty --noEmit --incremental false",
     "format": "prettier --write .",
     "lint": "next lint",
-    "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx"
+    "lint-fix": "eslint --fix . --ext .ts,.tsx,.js,.jsx",
+    "test": "npx dotenv-cli -e .env -e .env.local -- vitest run --silent",
+    "test:dev": "npx dotenv-cli -e .env -e .env.local -- vitest",
+    "test:ui": "npx dotenv-cli -e .env -e .env.local -- vitest --silent --ui",
+    "test:coverage": "npx dotenv-cli -e .env -e .env.local -- vitest --silent --coverage"
   },
   "dependencies": {
     "@chakra-ui/system": "^1.12.1",

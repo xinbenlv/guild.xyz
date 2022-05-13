@@ -8,6 +8,8 @@ if (!globalThis.defined) {
   globalThis.fetch = fetch as any
 
   vi.mock("@web3-react/core")
+  vi.mock("next/link")
+  vi.mock("next/dist/client/link")
 
   beforeEach(() => {
     Object.defineProperty(window, "matchMedia", {
@@ -23,6 +25,36 @@ if (!globalThis.defined) {
         dispatchEvent: vi.fn(),
       })),
     })
+  })
+
+  beforeAll(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: vi.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    })
+  })
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: vi.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
   })
 
   const spiesDir = resolve(join(__dirname, "..", "spies"))

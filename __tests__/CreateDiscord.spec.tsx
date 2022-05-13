@@ -10,9 +10,10 @@ beforeEach(() => {
   render(<ProvidersWrapper Component={CreatePage} />)
 })
 
-describe("create page", () => {
+describe("discord create page", () => {
   it("renders", () => {
     expect(screen.getByText(/create guild on discord/i)).toBeDefined()
+    expect(screen.getAllByText(/0x[a-f0-9\.]+/i)).toBeDefined()
     expect(useDCAuthSpy).toBeCalledWith("guilds")
     expect(useUsersServersSpy).toBeCalledWith("Bearer 12345")
   })

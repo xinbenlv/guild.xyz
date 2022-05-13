@@ -86,6 +86,7 @@ const TelegramGroup = ({ setUploadPromise }: Props) => {
           <FormControl isInvalid={!!errors?.TELEGRAM?.platformId}>
             <FormLabel>2. Enter group ID</FormLabel>
             <Input
+              data-testid="tg-group-id-input"
               maxW={{ base: "full", lg: "50%" }}
               {...register("TELEGRAM.platformId", {
                 required: platform === "TELEGRAM" && "This field is required.",
