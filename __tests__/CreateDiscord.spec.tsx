@@ -26,6 +26,8 @@ describe("discord create page", () => {
 
     vi.advanceTimersByTime(500)
 
+    await waitFor(() => {}, { timeout: 1000, interval: 1000 })
+
     expect(screen.getByTestId("guild-creation-sign-button")).toBeDefined()
     fireEvent.click(screen.getByTestId("guild-creation-sign-button"))
 

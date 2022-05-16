@@ -5,7 +5,7 @@ const onSubmitSpy = vi.fn()
 
 beforeEach(() => {
   useCreateGuildSpy.mockReturnValue({
-    onSubmit: onSubmitSpy,
+    onSubmit: (props) => onSubmitSpy(props),
     isLoading: false,
     isSigning: false,
     response: null,
