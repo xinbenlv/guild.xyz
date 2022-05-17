@@ -5,10 +5,7 @@ const onSubmitSpy = vi.fn()
 
 beforeEach(() => {
   useEditRoleSpy.mockReturnValue({
-    onSubmit: ({ name, description }) => {
-      console.log({ name, description })
-      onSubmitSpy({ name, description })
-    },
+    onSubmit: ({ name, description }) => onSubmitSpy({ name, description }),
     isLoading: false,
     isSigning: false,
     response: null,

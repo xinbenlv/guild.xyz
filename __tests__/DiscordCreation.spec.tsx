@@ -28,7 +28,7 @@ vi.mock("react-hook-form", async () => {
     ...(reactHookForm as any),
     useFormContext: () => ({
       control: null,
-      handleSubmit: (onValid) => onValid(formState),
+      handleSubmit: (onValid) => () => onValid(formState),
       setValue: (...props) => {
         formState[props[0]] = props[1]
         setValueSpy(...props)

@@ -17,7 +17,6 @@ const useIsTGBotIn = (groupId: string) => {
     {
       fallbackData,
       refreshInterval: 5000,
-      onSuccess: (value) => console.log(`useIsTGBotIn fetch success: ${value}`),
     }
   )
 
