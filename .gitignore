@@ -32,4 +32,4 @@ yarn-error.log*
 cypress/screenshots
 cypress/videos
 
-__tests__/coverage
+tests/coverage
