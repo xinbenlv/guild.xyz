@@ -7,8 +7,6 @@ import { onSubmitSpy } from "./spies/useEditGuild.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
 // TODO: Optimization: Mock the components that are unused in the given test
-// For example: Mock every input but Description for the case testing the description edit
-
 // TODO: Implement with describe.concurrent()
 
 const setValueSpy = vi.fn()

@@ -5,8 +5,6 @@ import guildData from "./fixtures/guildData.json"
 import useDeleteRoleSpy, { onSubmitSpy } from "./spies/useDeleteRole.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
-// TODO: Optimization: Mock the components that are unused in the given test
-
 beforeEach(() => {
   const [{ id }] = guildData.roles
   render(

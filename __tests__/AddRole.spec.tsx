@@ -4,8 +4,6 @@ import AddRoleButton from "../src/components/[guild]/AddRoleButton/AddRoleButton
 import { onSubmitSpy } from "./spies/useCreateRole.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
-// TODO: Optimization: Mock the components that are unused in the given test
-
 beforeEach(() => {
   render(<ProvidersWrapper Component={AddRoleButton} />)
 })

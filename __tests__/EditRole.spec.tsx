@@ -5,8 +5,6 @@ import guildData from "./fixtures/guildData.json"
 import { onSubmitSpy } from "./spies/useEditRole.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
-// TODO: Optimization: Mock the components that are unused in the given test
-
 beforeEach(() => {
   const [roleData] = guildData.roles
   render(<ProvidersWrapper Component={EditRole} pageProps={{ roleData }} />)
