@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
-import ServerSetupCard from "../../src/components/guard/setup/ServerSetupCard/ServerSetupCard"
-import pinataUploadSpy from "../spies/pinataUpload.spy"
-import { onSubmitSpy } from "../spies/useCreateGuild.spy"
-import ProvidersWrapper from "../utils/ProvidersWrapper"
+import ServerSetupCard from "../../../src/components/guard/setup/ServerSetupCard/ServerSetupCard"
+import ProvidersWrapper from "../../ProvidersWrapper"
+import pinataUploadSpy from "../../spies/pinataUpload.spy"
+import { onSubmitSpy } from "../../spies/useCreateGuild.spy"
 
 const setValueSpy = vi.fn()
 

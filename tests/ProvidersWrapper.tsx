@@ -1,7 +1,7 @@
 import { NextComponentType, NextPageContext } from "next"
 import { RouterContext } from "next/dist/shared/lib/router-context"
 import { NextRouter } from "next/router"
-import App from "../../src/pages/_app"
+import App from "../src/pages/_app"
 
 type Props = {
   Component: NextComponentType<NextPageContext, any, any>

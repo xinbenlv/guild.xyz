@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
-import CreatePage from "../src/pages/create-guild/telegram"
-import useIsTGBotInSpy from "./spies/useIsTGBotIn.spy"
-import ProvidersWrapper from "./utils/ProvidersWrapper"
+import CreatePage from "../../src/pages/create-guild/telegram"
+import ProvidersWrapper from "../ProvidersWrapper"
+import useIsTGBotInSpy from "../spies/useIsTGBotIn.spy"
 
 beforeEach(() => {
   render(<ProvidersWrapper Component={CreatePage} />)

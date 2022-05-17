@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import ExplorerPage from "../src/pages/explorer"
-import ProvidersWrapper from "./utils/ProvidersWrapper"
+import ExplorerPage from "../../src/pages/explorer"
+import ProvidersWrapper from "../ProvidersWrapper"
 
 beforeEach(() => {
   render(<ProvidersWrapper Component={ExplorerPage} />)

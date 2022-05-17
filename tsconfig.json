@@ -24,8 +24,8 @@
     "./src/**/*.tsx",
     "./api/**/*.ts",
     "./vitest.config.ts",
-    "__tests__/**/*.ts",
-    "__tests__/**/*.tsx"
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
   ],
   "exclude": ["node_modules", ".next", "out"]
 }
