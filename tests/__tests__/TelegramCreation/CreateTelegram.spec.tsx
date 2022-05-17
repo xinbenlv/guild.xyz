@@ -1,18 +1,25 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
-import CreatePage from "../../src/pages/create-guild/telegram"
-import ProvidersWrapper from "../ProvidersWrapper"
-import useIsTGBotInSpy from "../spies/useIsTGBotIn.spy"
+import * as errorAlert from "../../../src/components/common/ErrorAlert"
+import * as errorAnimation from "../../../src/components/common/ErrorAnimation"
+import * as layout from "../../../src/components/common/Layout"
+import CreatePage from "../../../src/pages/create-guild/telegram"
+import ProvidersWrapper from "../../ProvidersWrapper"
+import useIsTGBotInSpy from "../../spies/useIsTGBotIn.spy"
+
+// Mocking these for render speed, as these are irrelevant for the tests
+beforeEach(() => {
+  vi.spyOn(layout, "default").mockImplementation(({ children }) => <>{children}</>)
+  vi.spyOn(errorAnimation, "default").mockImplementation(({ children }) => (
+    <>{children}</>
+  ))
+  vi.spyOn(errorAlert, "default").mockImplementation(() => null)
+})
 
 beforeEach(() => {
   render(<ProvidersWrapper Component={CreatePage} />)
 })
 
 describe("telegram create page", () => {
-  it("renders", () => {
-    expect(screen.getByText(/create guild on telegram/i)).toBeDefined()
-    expect(screen.getByText(/0x[a-f0-9\.]+/i)).toBeDefined()
-  })
-
   it("can create guild", async () => {
     fireEvent.change(screen.getByTestId("tg-group-id-input"), {
       target: { value: process.env.VITEST_TG_GROUP_ID },
