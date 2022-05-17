@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import React from "react"
 import ServerSetupCard from "../../../src/components/guard/setup/ServerSetupCard/ServerSetupCard"
 import ProvidersWrapper from "../../ProvidersWrapper"
 import pinataUploadSpy from "../../spies/pinataUpload.spy"
@@ -19,19 +20,29 @@ const formState = {
   ],
 }
 
-vi.mock("react-hook-form", () => ({
-  ...require("react-hook-form"),
-  useFormContext: () => ({
-    control: null,
-    handleSubmit: (onValid) => onValid(formState),
-    setValue: (...props) => {
-      formState[props[0]] = props[1]
-      setValueSpy(...props)
-    },
-  }),
-  useWatch: () => "973501817566674984",
-  useFormState: () => ({ touchedFields: {} }),
-}))
+vi.mock("react-hook-form", async () => {
+  const reactHookForm = await vi.importActual("react-hook-form")
+
+  return {
+    ...(reactHookForm as any),
+    useFormContext: () => ({
+      control: null,
+      handleSubmit: (onValid) => onValid(formState),
+      setValue: (...props) => {
+        formState[props[0]] = props[1]
+        setValueSpy(...props)
+      },
+    }),
+    useWatch: () => "973501817566674984",
+    useFormState: () => ({ touchedFields: {} }),
+  }
+})
+
+// This is for watchedVideo
+vi.mock("react", async () => {
+  const react = await vi.importActual("react")
+  return { ...(react as any), useState: () => [true, vi.fn()] }
+})
 
 beforeEach(() => {
   render(<ProvidersWrapper Component={ServerSetupCard} />)
