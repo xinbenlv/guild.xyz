@@ -14,13 +14,9 @@ describe("telegram create page", () => {
   })
 
   it("can create guild", async () => {
-    const input = screen.getByTestId("tg-group-id-input") as HTMLInputElement
-
-    fireEvent.change(input, {
+    fireEvent.change(screen.getByTestId("tg-group-id-input"), {
       target: { value: process.env.VITEST_TG_GROUP_ID },
     })
-    fireEvent.blur(input)
-    expect(input.value).toBe(process.env.VITEST_TG_GROUP_ID)
 
     await waitFor(() => {
       expect(useIsTGBotInSpy).toHaveBeenCalledWith(process.env.VITEST_TG_GROUP_ID)
@@ -28,6 +24,13 @@ describe("telegram create page", () => {
 
     await waitFor(() => {
       expect(screen.getByText(/guild bot added/i)).toBeDefined()
+      expect(screen.getByText(/free entry/i)).toBeDefined()
+      fireEvent.click(screen.getByText(/free entry/i))
+      expect(
+        screen
+          .getByText(/free entry/i)
+          .parentElement.querySelector("[data-checked='']")
+      ).toBeTruthy()
     })
   })
 })
