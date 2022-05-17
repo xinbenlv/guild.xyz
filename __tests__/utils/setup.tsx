@@ -2,6 +2,10 @@ import { readdir } from "fs/promises"
 import fetch from "node-fetch"
 import { join, resolve } from "path"
 import { vi } from "vitest"
+import * as discardAlert from "../../src/components/common/DiscardAlert"
+import * as onboardingMarker from "../../src/components/common/OnboardingMarker"
+import * as useGuildPermission from "../../src/components/[guild]/hooks/useGuildPermission"
+import * as useWarnIfUnsavedChanges from "../../src/hooks/useWarnIfUnsavedChanges"
 
 if (!globalThis.defined) {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
@@ -29,6 +33,19 @@ if (!globalThis.defined) {
         dispatchEvent: vi.fn(),
       })),
     })
+  })
+
+  // Some commonly used components / hooks that are irrelevant for the tests
+  beforeEach(() => {
+    vi.spyOn(onboardingMarker, "default").mockImplementation(({ children }) => (
+      <>{children}</>
+    ))
+    vi.spyOn(discardAlert, "default").mockImplementation(() => null)
+    vi.spyOn(useWarnIfUnsavedChanges, "default").mockImplementation(() => {})
+    vi.spyOn(useGuildPermission, "default").mockImplementation(() => ({
+      isAdmin: true,
+      isOwner: true,
+    }))
   })
 
   // Load global spies
