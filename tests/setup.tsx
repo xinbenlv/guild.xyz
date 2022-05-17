@@ -7,6 +7,10 @@ if (!globalThis.defined) {
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
   globalThis.fetch = fetch as any
 
+  globalThis.CSS = {
+    supports: () => false,
+  } as any
+
   vi.mock("@web3-react/core")
   vi.mock("next/link")
   vi.mock("next/dist/client/link")
