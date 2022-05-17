@@ -7,8 +7,9 @@ beforeEach(() => {
     isLoading: false,
     data: {
       ok: groupId === process.env.VITEST_TG_GROUP_ID,
-      groupIcon: "",
-      groupName: "Placeholder Group Name",
+      groupIcon:
+        "https://cdn.discordapp.com/icons/973501817566674984/d006abc42ae94e704ca8bca540b148f0.png",
+      groupName: "Vitest Gang",
       message: "",
     },
   }))
