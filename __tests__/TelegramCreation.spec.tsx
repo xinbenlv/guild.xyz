@@ -1,14 +1,14 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import getRandomInt from "utils/getRandomInt"
-import * as errorAlert from "../../../src/components/common/ErrorAlert"
-import * as errorAnimation from "../../../src/components/common/ErrorAnimation"
-import * as layout from "../../../src/components/common/Layout"
-import * as balancyCounter from "../../../src/components/create-guild/Requirements/components/BalancyCounter"
-import CreatePage from "../../../src/pages/create-guild/telegram"
-import expectedSubmitData from "../../fixtures/telegramCreationExpectedSubmitData.json"
-import ProvidersWrapper from "../../ProvidersWrapper"
-import { onSubmitSpy } from "../../spies/useCreateGuild.spy"
-import useIsTGBotInSpy from "../../spies/useIsTGBotIn.spy"
+import * as errorAlert from "../src/components/common/ErrorAlert"
+import * as errorAnimation from "../src/components/common/ErrorAnimation"
+import * as layout from "../src/components/common/Layout"
+import * as balancyCounter from "../src/components/create-guild/Requirements/components/BalancyCounter"
+import CreatePage from "../src/pages/create-guild/telegram"
+import expectedSubmitData from "./fixtures/telegramCreationExpectedSubmitData.json"
+import { onSubmitSpy } from "./spies/useCreateGuild.spy"
+import useIsTGBotInSpy from "./spies/useIsTGBotIn.spy"
+import ProvidersWrapper from "./utils/ProvidersWrapper"
 
 const setValueSpy = vi.fn()
 

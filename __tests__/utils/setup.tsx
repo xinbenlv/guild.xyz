@@ -32,7 +32,7 @@ if (!globalThis.defined) {
   })
 
   // Load global spies
-  const spiesDir = resolve(join(__dirname, "spies"))
+  const spiesDir = resolve(join(__dirname, "..", "spies"))
   readdir(spiesDir).then((files) =>
     Promise.all(
       files

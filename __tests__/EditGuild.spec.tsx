@@ -1,18 +1,18 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
-import * as discardAlert from "../../../src/components/common/DiscardAlert"
-import * as onboardingMarker from "../../../src/components/common/OnboardingMarker"
-import EditGuildButton from "../../../src/components/[guild]/EditGuildButton/EditGuildButton"
-import * as useGuildPermission from "../../../src/components/[guild]/hooks/useGuildPermission"
-import * as themContext from "../../../src/components/[guild]/ThemeContext"
-import * as useWarnIfUnsavedChanges from "../../../src/hooks/useWarnIfUnsavedChanges"
-import guildData from "../../fixtures/guildData.json"
-import ProvidersWrapper from "../../ProvidersWrapper"
+import * as discardAlert from "../src/components/common/DiscardAlert"
+import * as onboardingMarker from "../src/components/common/OnboardingMarker"
+import EditGuildButton from "../src/components/[guild]/EditGuildButton/EditGuildButton"
+import * as useGuildPermission from "../src/components/[guild]/hooks/useGuildPermission"
+import * as themContext from "../src/components/[guild]/ThemeContext"
+import * as useWarnIfUnsavedChanges from "../src/hooks/useWarnIfUnsavedChanges"
+import guildData from "./fixtures/guildData.json"
 import {
   onSubmitDescriptionSpy,
   onSubmitNameSpy,
   onSubmitUrlNameSpy,
-} from "../../spies/useEditGuild.spy"
+} from "./spies/useEditGuild.spy"
+import ProvidersWrapper from "./utils/ProvidersWrapper"
 
 // TODO: Optimization: Mock the components that are unused in the given test
 // For example: Mock every input but Description for the case testing the description edit

@@ -1,10 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
-import ServerSetupCard from "../../../src/components/guard/setup/ServerSetupCard/ServerSetupCard"
-import expectedSubmitData from "../../fixtures/discordCreateExpectedSubmitData.json"
-import ProvidersWrapper from "../../ProvidersWrapper"
-import pinataUploadSpy from "../../spies/pinataUpload.spy"
-import { onSubmitSpy } from "../../spies/useCreateGuild.spy"
+import ServerSetupCard from "../src/components/guard/setup/ServerSetupCard/ServerSetupCard"
+import expectedSubmitData from "./fixtures/discordCreateExpectedSubmitData.json"
+import pinataUploadSpy from "./spies/pinataUpload.spy"
+import { onSubmitSpy } from "./spies/useCreateGuild.spy"
+import ProvidersWrapper from "./utils/ProvidersWrapper"
 
 const setValueSpy = vi.fn()
 
