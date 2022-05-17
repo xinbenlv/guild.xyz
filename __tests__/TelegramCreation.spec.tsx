@@ -54,37 +54,35 @@ beforeEach(() => {
   render(<ProvidersWrapper Component={CreatePage} />)
 })
 
-describe("telegram create page", () => {
-  it("can create guild", async () => {
-    fireEvent.change(screen.getByTestId("tg-group-id-input"), {
-      target: { value: process.env.VITEST_TG_GROUP_ID },
-    })
+it("should create Telegram guild", async () => {
+  fireEvent.change(screen.getByTestId("tg-group-id-input"), {
+    target: { value: process.env.VITEST_TG_GROUP_ID },
+  })
 
-    await waitFor(() => {
-      expect(useIsTGBotInSpy).toHaveBeenCalledWith(process.env.VITEST_TG_GROUP_ID)
-    })
+  await waitFor(() => {
+    expect(useIsTGBotInSpy).toHaveBeenCalledWith(process.env.VITEST_TG_GROUP_ID)
+  })
 
-    await waitFor(() => {
-      expect(screen.getByText(/guild bot added/i)).toBeDefined()
-    })
+  await waitFor(() => {
+    expect(screen.getByText(/guild bot added/i)).toBeDefined()
+  })
 
-    fireEvent.click(screen.getByText(/free entry/i))
+  fireEvent.click(screen.getByText(/free entry/i))
 
-    await waitFor(() => {
-      expect(setValueSpy).toHaveBeenCalledWith("name", "Vitest Gang")
-    })
+  await waitFor(() => {
+    expect(setValueSpy).toHaveBeenCalledWith("name", "Vitest Gang")
+  })
 
-    await waitFor(() => {
-      expect(setValueSpy).toHaveBeenCalledWith(
-        "imageUrl",
-        "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy"
-      )
-    })
+  await waitFor(() => {
+    expect(setValueSpy).toHaveBeenCalledWith(
+      "imageUrl",
+      "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy"
+    )
+  })
 
-    fireEvent.click(screen.getByText(/summon/i))
+  fireEvent.click(screen.getByText(/summon/i))
 
-    await waitFor(() => {
-      expect(onSubmitSpy).toHaveBeenCalledWith(expectedSubmitData)
-    })
+  await waitFor(() => {
+    expect(onSubmitSpy).toHaveBeenCalledWith(expectedSubmitData)
   })
 })

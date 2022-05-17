@@ -36,23 +36,21 @@ beforeEach(async () => {
   })
 })
 
-describe("Guild page", () => {
-  it("should edit description", async () => {
-    fireEvent.change(screen.getByTestId("edit-name-input"), {
-      target: { value: "Edited Role" },
-    })
+it("should edit role", async () => {
+  fireEvent.change(screen.getByTestId("edit-name-input"), {
+    target: { value: "Edited Role" },
+  })
 
-    fireEvent.change(screen.getByTestId("description-textarea"), {
-      target: { value: "Edited Role description" },
-    })
+  fireEvent.change(screen.getByTestId("description-textarea"), {
+    target: { value: "Edited Role description" },
+  })
 
-    fireEvent.click(screen.getByText("Save"))
+  fireEvent.click(screen.getByText("Save"))
 
-    await waitFor(() => {
-      expect(onSubmitSpy).toHaveBeenCalledWith({
-        name: "Edited Role",
-        description: "Edited Role description",
-      })
+  await waitFor(() => {
+    expect(onSubmitSpy).toHaveBeenCalledWith({
+      name: "Edited Role",
+      description: "Edited Role description",
     })
   })
 })

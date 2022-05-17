@@ -49,25 +49,18 @@ beforeEach(() => {
   render(<ProvidersWrapper Component={ServerSetupCard} />)
 })
 
-describe("ServerSetupCard", () => {
-  it("renders", () => {
-    expect(screen.getByText(/wallet connected/i)).toBeDefined()
-    expect(screen.getByTestId("guild-creation-sign-button")).toBeDefined()
+it("should create Discord guild", async () => {
+  fireEvent.click(screen.getByTestId("guild-creation-sign-button"))
+  await waitFor(() => {
+    expect(pinataUploadSpy).toHaveBeenCalled()
   })
 
-  it("handles sign click", async () => {
-    fireEvent.click(screen.getByTestId("guild-creation-sign-button"))
-    await waitFor(() => {
-      expect(pinataUploadSpy).toHaveBeenCalled()
-    })
+  expect(setValueSpy).toHaveBeenCalledWith(
+    "imageUrl",
+    "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy"
+  )
 
-    expect(setValueSpy).toHaveBeenCalledWith(
-      "imageUrl",
-      "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy"
-    )
-
-    await waitFor(() => {
-      expect(onSubmitSpy).toHaveBeenCalledWith(expectedSubmitData)
-    })
+  await waitFor(() => {
+    expect(onSubmitSpy).toHaveBeenCalledWith(expectedSubmitData)
   })
 })
