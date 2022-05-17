@@ -42,6 +42,7 @@ const Name = (): JSX.Element => {
         width={{ base: "full", md: "sm" }}
         {...rest}
         onBlur={onBlur}
+        data-testid="edit-name-input"
       />
       <FormErrorMessage>{errors?.name?.message}</FormErrorMessage>
     </FormControl>

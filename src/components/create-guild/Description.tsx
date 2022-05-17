@@ -8,7 +8,12 @@ const Description = (): JSX.Element => {
   return (
     <FormControl>
       <FormLabel>Description</FormLabel>
-      <Textarea {...register("description")} size="lg" placeholder="Optional" />
+      <Textarea
+        {...register("description")}
+        size="lg"
+        placeholder="Optional"
+        data-testid="description-textarea"
+      />
     </FormControl>
   )
 }

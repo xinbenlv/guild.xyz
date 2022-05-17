@@ -28,6 +28,7 @@ const UrlName = () => {
       <InputGroup size="lg" maxWidth="sm">
         <InputLeftAddon>guild.xyz/</InputLeftAddon>
         <Input
+          data-testid="edit-urlname-input"
           {...register("urlName")}
           onChange={(event) => {
             setValue("urlName", slugify(event.target.value, { trim: false }))
