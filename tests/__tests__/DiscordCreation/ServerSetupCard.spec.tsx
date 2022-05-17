@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
 import ServerSetupCard from "../../../src/components/guard/setup/ServerSetupCard/ServerSetupCard"
+import expectedSubmitData from "../../fixtures/discordCreateExpectedSubmitData.json"
 import ProvidersWrapper from "../../ProvidersWrapper"
 import pinataUploadSpy from "../../spies/pinataUpload.spy"
 import { onSubmitSpy } from "../../spies/useCreateGuild.spy"
@@ -66,14 +67,7 @@ describe("ServerSetupCard", () => {
     )
 
     await waitFor(() => {
-      expect(onSubmitSpy).toHaveBeenCalledWith({
-        imageUrl:
-          "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy",
-        platform: "DISCORD",
-        DISCORD: { platformId: "973501817566674984" },
-        requirements: [{ type: "FREE" }],
-        name: "Vitest Gang",
-      })
+      expect(onSubmitSpy).toHaveBeenCalledWith(expectedSubmitData)
     })
   })
 })

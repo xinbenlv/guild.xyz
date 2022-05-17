@@ -5,6 +5,7 @@ import * as errorAnimation from "../../../src/components/common/ErrorAnimation"
 import * as layout from "../../../src/components/common/Layout"
 import * as balancyCounter from "../../../src/components/create-guild/Requirements/components/BalancyCounter"
 import CreatePage from "../../../src/pages/create-guild/telegram"
+import expectedSubmitData from "../../fixtures/telegramCreationExpectedSubmitData.json"
 import ProvidersWrapper from "../../ProvidersWrapper"
 import { onSubmitSpy } from "../../spies/useCreateGuild.spy"
 import useIsTGBotInSpy from "../../spies/useIsTGBotIn.spy"
@@ -83,15 +84,7 @@ describe("telegram create page", () => {
     fireEvent.click(screen.getByText(/summon/i))
 
     await waitFor(() => {
-      expect(onSubmitSpy).toHaveBeenCalledWith({
-        name: "Vitest Gang",
-        imageUrl:
-          "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy",
-        platform: "TELEGRAM",
-        logic: "AND",
-        TELEGRAM: { platformId: "-1001535868215" },
-        requirements: [{ type: "FREE", data: {}, chain: null, address: null }],
-      })
+      expect(onSubmitSpy).toHaveBeenCalledWith(expectedSubmitData)
     })
   })
 })
