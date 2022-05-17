@@ -2,17 +2,11 @@ import * as useEditGuild from "../../src/components/[guild]/EditGuildButton/hook
 
 const useEditGuildSpy = vi.spyOn(useEditGuild, "default")
 const onSubmitSpy = vi.fn()
-const onSubmitDescriptionSpy = vi.fn()
-const onSubmitUrlNameSpy = vi.fn()
-const onSubmitNameSpy = vi.fn()
 
 beforeEach(() => {
   useEditGuildSpy.mockReturnValue({
-    onSubmit: (props) => {
-      onSubmitDescriptionSpy(props.description)
-      onSubmitUrlNameSpy(props.urlName)
-      onSubmitNameSpy(props.name)
-      onSubmitSpy(props)
+    onSubmit: ({ description, name, urlName }) => {
+      onSubmitSpy({ description, name, urlName })
     },
     isLoading: false,
     isSigning: false,
@@ -21,5 +15,5 @@ beforeEach(() => {
   })
 })
 
-export { onSubmitSpy, onSubmitDescriptionSpy, onSubmitNameSpy, onSubmitUrlNameSpy }
+export { onSubmitSpy }
 export default useEditGuildSpy

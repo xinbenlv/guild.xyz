@@ -7,11 +7,7 @@ import * as useGuildPermission from "../src/components/[guild]/hooks/useGuildPer
 import * as themContext from "../src/components/[guild]/ThemeContext"
 import * as useWarnIfUnsavedChanges from "../src/hooks/useWarnIfUnsavedChanges"
 import guildData from "./fixtures/guildData.json"
-import {
-  onSubmitDescriptionSpy,
-  onSubmitNameSpy,
-  onSubmitUrlNameSpy,
-} from "./spies/useEditGuild.spy"
+import { onSubmitSpy } from "./spies/useEditGuild.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
 // TODO: Optimization: Mock the components that are unused in the given test
@@ -96,46 +92,33 @@ beforeEach(() => {
   render(<ProvidersWrapper Component={EditGuildButton} />)
 })
 
-beforeEach(async () => {
+it("should edit guild", async () => {
   fireEvent.click(screen.getByRole("button"))
 
   await waitFor(() => {
     expect(screen.getByText(/Edit guild/i)).toBeDefined()
   })
-})
 
-describe("Guild page", () => {
-  it("should edit description", async () => {
-    fireEvent.change(screen.getByTestId("description-textarea"), {
-      target: { value: "Edited" },
-    })
-    fireEvent.click(screen.getByText("Save"))
-
-    await waitFor(() => {
-      expect(onSubmitDescriptionSpy).toHaveBeenCalledWith("Edited")
-    })
+  fireEvent.change(screen.getByTestId("description-textarea"), {
+    target: { value: "Edited" },
   })
 
-  it("should edit urlName", async () => {
-    fireEvent.change(screen.getByTestId("edit-urlname-input"), {
-      target: { value: "edited urlname" },
-    })
-    fireEvent.blur(screen.getByTestId("edit-urlname-input"))
-    fireEvent.click(screen.getByText("Save"))
+  fireEvent.change(screen.getByTestId("edit-urlname-input"), {
+    target: { value: "edited urlname" },
+  })
+  fireEvent.blur(screen.getByTestId("edit-urlname-input"))
 
-    await waitFor(() => {
-      expect(onSubmitUrlNameSpy).toHaveBeenCalledWith("edited-urlname")
-    })
+  fireEvent.change(screen.getByTestId("edit-name-input"), {
+    target: { value: "Edited Name" },
   })
 
-  it("should edit name", async () => {
-    fireEvent.change(screen.getByTestId("edit-name-input"), {
-      target: { value: "Edited Name" },
-    })
-    fireEvent.click(screen.getByText("Save"))
+  fireEvent.click(screen.getByText("Save"))
 
-    await waitFor(() => {
-      expect(onSubmitNameSpy).toHaveBeenCalledWith("Edited Name")
+  await waitFor(() => {
+    expect(onSubmitSpy).toHaveBeenCalledWith({
+      description: "Edited",
+      urlName: "edited-urlname",
+      name: "Edited Name",
     })
   })
 })
