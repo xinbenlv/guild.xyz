@@ -8,15 +8,13 @@ beforeEach(() => {
   render(<ProvidersWrapper Component={AddRoleButton} />)
 })
 
-beforeEach(async () => {
+it("should add a role", async () => {
   fireEvent.click(screen.getByRole("button"))
 
   await waitFor(() => {
     expect(screen.getByRole("heading", { name: /Add role/i })).toBeDefined()
   })
-})
 
-it("should add a role", async () => {
   fireEvent.change(screen.getByTestId("edit-name-input"), {
     target: { value: "New Role" },
   })

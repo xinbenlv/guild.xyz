@@ -10,15 +10,13 @@ beforeEach(() => {
   render(<ProvidersWrapper Component={EditRole} pageProps={{ roleData }} />)
 })
 
-beforeEach(async () => {
+it("should edit role", async () => {
   fireEvent.click(screen.getByRole("button"))
 
   await waitFor(() => {
     expect(screen.getByRole("heading", { name: /Edit role/i })).toBeDefined()
   })
-})
 
-it("should edit role", async () => {
   fireEvent.change(screen.getByTestId("edit-name-input"), {
     target: { value: "Edited Role" },
   })

@@ -1,9 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import getRandomInt from "utils/getRandomInt"
-import * as errorAlert from "../src/components/common/ErrorAlert"
-import * as errorAnimation from "../src/components/common/ErrorAnimation"
-import * as layout from "../src/components/common/Layout"
-import * as balancyCounter from "../src/components/create-guild/Requirements/components/BalancyCounter"
 import CreatePage from "../src/pages/create-guild/telegram"
 import expectedSubmitData from "./fixtures/telegramCreationExpectedSubmitData.json"
 import { onSubmitSpy } from "./spies/useCreateGuild.spy"
@@ -37,17 +33,6 @@ vi.mock("react-hook-form", async () => {
       }
     },
   }
-})
-
-// Mocking these for render speed, as these are irrelevant for the tests
-// Also helps to debug, as the DOM won't be spammed
-beforeEach(() => {
-  vi.spyOn(layout, "default").mockImplementation(({ children }) => <>{children}</>)
-  vi.spyOn(errorAnimation, "default").mockImplementation(({ children }) => (
-    <>{children}</>
-  ))
-  vi.spyOn(errorAlert, "default").mockImplementation(() => null)
-  vi.spyOn(balancyCounter, "default").mockImplementation(() => null)
 })
 
 beforeEach(() => {

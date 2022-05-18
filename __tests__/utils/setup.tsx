@@ -3,8 +3,13 @@ import fetch from "node-fetch"
 import { join, resolve } from "path"
 import { vi } from "vitest"
 import * as discardAlert from "../../src/components/common/DiscardAlert"
+import * as errorAlert from "../../src/components/common/ErrorAlert"
+import * as errorAnimation from "../../src/components/common/ErrorAnimation"
+import * as layout from "../../src/components/common/Layout"
 import * as onboardingMarker from "../../src/components/common/OnboardingMarker"
+import * as balancyCounter from "../../src/components/create-guild/Requirements/components/BalancyCounter"
 import * as useGuildPermission from "../../src/components/[guild]/hooks/useGuildPermission"
+import * as themContext from "../../src/components/[guild]/ThemeContext"
 import * as useWarnIfUnsavedChanges from "../../src/hooks/useWarnIfUnsavedChanges"
 
 if (!globalThis.defined) {
@@ -35,6 +40,18 @@ if (!globalThis.defined) {
     })
   })
 
+  beforeEach(() => {
+    vi.spyOn(themContext, "useThemeContext").mockImplementation(() => ({
+      localThemeColor: "",
+      setLocalThemeColor: vi.fn(),
+      localThemeMode: "DARK",
+      setLocalThemeMode: vi.fn(),
+      localBackgroundImage: "",
+      setLocalBackgroundImage: vi.fn(),
+      textColor: "",
+    }))
+  })
+
   // Some commonly used components / hooks that are irrelevant for the tests
   beforeEach(() => {
     vi.spyOn(onboardingMarker, "default").mockImplementation(({ children }) => (
@@ -45,6 +62,22 @@ if (!globalThis.defined) {
     vi.spyOn(useGuildPermission, "default").mockImplementation(() => ({
       isAdmin: true,
       isOwner: true,
+    }))
+    vi.spyOn(layout, "default").mockImplementation(({ children }) => <>{children}</>)
+    vi.spyOn(errorAnimation, "default").mockImplementation(({ children }) => (
+      <>{children}</>
+    ))
+    vi.spyOn(errorAlert, "default").mockImplementation(() => null)
+    vi.spyOn(balancyCounter, "default").mockImplementation(() => null)
+
+    vi.spyOn(themContext, "useThemeContext").mockImplementation(() => ({
+      localThemeColor: "",
+      setLocalThemeColor: vi.fn(),
+      localThemeMode: "DARK",
+      setLocalThemeMode: vi.fn(),
+      localBackgroundImage: "",
+      setLocalBackgroundImage: vi.fn(),
+      textColor: "",
     }))
   })
 
