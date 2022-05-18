@@ -35,3 +35,32 @@ it("should add a role", async () => {
     })
   })
 })
+
+vi.mock(
+  "../src/components/[guild]/AddRoleButton/components/DiscordSettings",
+  () => ({
+    default: () => null,
+  })
+)
+
+vi.mock("../src/components/create-guild/IconSelector/IconSelector", () => ({
+  default: () => null,
+}))
+
+vi.mock(
+  "../src/components/create-guild/Requirements/components/BalancyCounter",
+  () => ({ default: () => null })
+)
+
+vi.mock(
+  "../src/components/create-guild/Requirements/components/AddRequirementCard",
+  () => ({ default: () => null })
+)
+
+vi.mock("../src/components/create-guild/Requirements/components/FormCard", () => ({
+  default: () => null,
+}))
+
+vi.mock("../src/components/create-guild/LogicPicker/LogicPicker", () => ({
+  default: () => null,
+}))

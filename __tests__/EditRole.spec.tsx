@@ -34,3 +34,21 @@ it("should edit role", async () => {
     })
   })
 })
+
+vi.mock("../src/components/create-guild/IconSelector/IconSelector", () => ({
+  default: () => null,
+}))
+
+vi.mock("../src/components/create-guild/Requirements/SetRequirements", () => ({
+  default: () => null,
+}))
+
+vi.mock(
+  "../src/components/[guild]/RolesByPlatform/components/RoleListItem/components/EditRole/components/ChannelsToGate/ChannelsToGate",
+  () => ({ default: () => null })
+)
+
+vi.mock(
+  "../src/components/[guild]/RolesByPlatform/components/RoleListItem/components/EditRole/components/DeleteRoleButton/DeleteRoleButton",
+  () => ({ default: () => null })
+)

@@ -4,8 +4,6 @@ import EditGuildButton from "../src/components/[guild]/EditGuildButton/EditGuild
 import { onSubmitSpy } from "./spies/useEditGuild.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
-// TODO: Optimization: Mock the components that are unused in the given test
-
 beforeEach(() => {
   render(<ProvidersWrapper Component={EditGuildButton} />)
 })
@@ -40,3 +38,50 @@ it("should edit guild", async () => {
     })
   })
 })
+
+/**
+ * Mocks like these are hoisted to run before any import statements. This means, we
+ * can't separate this logic to a utility function. I'll try to find an alternative,
+ * but for now it does the job.
+ */
+
+vi.mock("../src/components/[guild]/EditGuildButton/components/Admins", () => ({
+  default: () => null,
+}))
+
+vi.mock(
+  "../src/components/[guild]/EditGuildButton/components/BackgroundImageUploader",
+  () => ({ default: () => null })
+)
+
+vi.mock(
+  "../src/components/[guild]/EditGuildButton/components/ColorModePicker",
+  () => ({ default: () => null })
+)
+
+vi.mock("../src/components/[guild]/EditGuildButton/components/ColorPicker", () => ({
+  default: () => null,
+}))
+
+vi.mock(
+  "../src/components/[guild]/EditGuildButton/components/MembersToggle",
+  () => ({ default: () => null })
+)
+
+vi.mock(
+  "../src/components/[guild]/EditGuildButton/components/HideFromExplorerToggle",
+  () => ({ default: () => null })
+)
+
+vi.mock("../src/components/[guild]/EditGuildButton/components/Guard", () => ({
+  default: () => null,
+}))
+
+vi.mock("../src/components/create-guild/IconSelector/IconSelector", () => ({
+  default: () => null,
+}))
+
+vi.mock(
+  "../src/components/[guild]/EditGuildButton/components/DeleteGuildButton/DeleteGuildButton",
+  () => ({ default: () => null })
+)
