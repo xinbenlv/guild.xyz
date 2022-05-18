@@ -116,7 +116,7 @@ const SetRequirements = ({ maxCols = 2 }: Props): JSX.Element => {
             defaultChecked={freeEntry}
             onChange={onFreeEntryChange}
           >
-            Free entry
+            Free entrrry
           </Checkbox>
           {!freeEntry && !isMobile && <BalancyCounter ml="auto !important" />}
         </HStack>
