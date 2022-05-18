@@ -1,8 +1,0 @@
-{
-  "name": "Vitest Gang",
-  "imageUrl": "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy",
-  "platform": "TELEGRAM",
-  "logic": "AND",
-  "TELEGRAM": { "platformId": "-1001535868215" },
-  "requirements": [{ "type": "FREE", "data": {}, "chain": null, "address": null }]
-}

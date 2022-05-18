@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
 import EditRole from "../src/components/[guild]/RolesByPlatform/components/RoleListItem/components/EditRole/EditRole"
-import guildData from "./fixtures/guildData.json"
+import guildData from "./fixtures/guildData"
 import { onSubmitSpy } from "./spies/useEditRole.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 

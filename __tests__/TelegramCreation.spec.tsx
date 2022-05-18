@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import getRandomInt from "utils/getRandomInt"
 import CreatePage from "../src/pages/create-guild/telegram"
-import expectedSubmitData from "./fixtures/telegramCreationExpectedSubmitData.json"
+import expectedSubmitData from "./fixtures/telegramCreationExpectedSubmitData"
 import { onSubmitSpy } from "./spies/useCreateGuild.spy"
 import useIsTGBotInSpy from "./spies/useIsTGBotIn.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
 import ServerSetupCard from "../src/components/guard/setup/ServerSetupCard/ServerSetupCard"
-import expectedSubmitData from "./fixtures/discordCreateExpectedSubmitData.json"
+import expectedSubmitData from "./fixtures/discordCreateExpectedSubmitData"
 import pinataUploadSpy from "./spies/pinataUpload.spy"
 import { onSubmitSpy } from "./spies/useCreateGuild.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
@@ -57,7 +57,7 @@ it("should create Discord guild", async () => {
 
   expect(setValueSpy).toHaveBeenCalledWith(
     "imageUrl",
-    "https://guild-xyz.mypinata.cloud/ipfs/QmYimSys3TNXJ3RRpABUou6Gc48BnsdYBqR4e5E3fmS5xy"
+    `https://guild-xyz.mypinata.cloud/ipfs/${process.env.VITEST_IPFS_HASH}`
   )
 
   await waitFor(() => {

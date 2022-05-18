@@ -1,5 +1,5 @@
 import * as useGuild from "../../src/components/[guild]/hooks/useGuild"
-import guildData from "../fixtures/guildData.json"
+import guildData from "../fixtures/guildData"
 
 const useGuildSpy = vi.spyOn(useGuild, "default")
 

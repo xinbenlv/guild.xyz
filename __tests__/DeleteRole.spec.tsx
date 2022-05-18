@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
 import DeleteRoleButton from "../src/components/[guild]/RolesByPlatform/components/RoleListItem/components/EditRole/components/DeleteRoleButton/DeleteRoleButton"
-import guildData from "./fixtures/guildData.json"
+import guildData from "./fixtures/guildData"
 import useDeleteRoleSpy, { onSubmitSpy } from "./spies/useDeleteRole.spy"
 import ProvidersWrapper from "./utils/ProvidersWrapper"
 
