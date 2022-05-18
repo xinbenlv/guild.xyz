@@ -13,17 +13,25 @@ jobs:
   run:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
+          node-version: 16.x
+
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
+
       - run: echo "VITEST_PRIVATE_KEY=${{ secrets.VITEST_PRIVATE_KEY }}" >> $GITHUB_ENV
+
       - run: npm test
