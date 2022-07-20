@@ -104,19 +104,6 @@ type PlatformAccountDetails = PlatformAccount & {
   avatar: string
 }
 
-type User = { id: number } & (
-  | {
-      // Fetched without platform auth
-      addresses: number
-      platformUsers: PlatformAccount[]
-    }
-  | {
-      // Fetched with platform auth
-      addresses: Array<string>
-      platformUsers: PlatformAccountDetails[]
-    }
-)
-
 type GuildBase = {
   name: string
   urlName: string
@@ -190,6 +177,22 @@ type RolePlatform = {
   index?: number
   isNewRole?: boolean
   platformRoleData?: PlatformRoleData[keyof PlatformRoleData]
+}
+
+type User = {
+  id: number
+  addresses: Array<string>
+  telegramId?: string
+  discordId?: string
+  platformUsers: PlatformAccountDetails[]
+  discord?: {
+    username: string
+    avatar: string
+  }
+  telegram?: {
+    username: string
+    avatar: string
+  }
 }
 
 type Role = {
@@ -378,6 +381,7 @@ type WalletConnectConnectionData = {
 
 enum ValidationMethod {
   STANDARD = 1,
+  KEYPAIR = 2,
   EIP1271 = 3,
 }
 
