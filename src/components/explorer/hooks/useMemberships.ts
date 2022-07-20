@@ -3,7 +3,7 @@ import useSWR from "swr"
 
 type Response = Array<{
   guildId: number
-  roleIds: number[]
+  roleids: number[]
 }>
 
 const useMemberships = () => {
