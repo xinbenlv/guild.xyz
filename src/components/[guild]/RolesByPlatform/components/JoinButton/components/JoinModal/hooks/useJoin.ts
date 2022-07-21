@@ -80,8 +80,9 @@ const useJoin = () => {
           }) as Promise<User>,
         ])
 
-        if (prevKeys) await setKeyPairToIdb(newUser?.id, prevKeys)
+        if (user?.id === newUser?.id || !prevKeys) return
 
+        await setKeyPairToIdb(newUser?.id, prevKeys)
         await mutate([`/user/details/${account}`, { method: "POST", body: {} }])
         await deleteKeyPairFromIdb(user?.id)
       })()
