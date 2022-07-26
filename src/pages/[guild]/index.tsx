@@ -211,7 +211,7 @@ const getStaticProps: GetStaticProps = async ({ params }) => {
         [unstable_serialize([endpoint, undefined])]: dataWithoutMembers,
       },
     },
-    revalidate: 10,
+    revalidate: 1,
   }
 }
 
