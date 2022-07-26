@@ -1,9 +1,13 @@
 import { datadogRum } from "@datadog/browser-rum"
 
+const callCounts = {}
+
 const fetcher = async (
   resource: string,
   { body, validation, ...init }: Record<string, any> = {}
 ) => {
+  callCounts[resource] = (callCounts[resource] ?? 0) + 1
+  console.log(callCounts[resource], resource)
   const isGuildApiCall = !resource.startsWith("http") && !resource.startsWith("/api")
 
   const api = isGuildApiCall ? process.env.NEXT_PUBLIC_API : ""
