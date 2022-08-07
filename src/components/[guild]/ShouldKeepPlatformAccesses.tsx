@@ -25,7 +25,6 @@ const ShouldKeepPlatformAccesses = ({
       title: "Revoke accesses",
       description: revokeAccessDescription,
       icon: UserCircleMinus,
-      disabled: "Soon",
     },
   ]
 
