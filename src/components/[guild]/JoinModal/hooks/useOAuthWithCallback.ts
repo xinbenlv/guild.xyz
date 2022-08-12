@@ -5,15 +5,17 @@ import { platformAuthHooks } from "./useConnectPlatform"
 
 const useOAuthWithCallback = (
   platform: PlatformName,
-  scope: string,
-  callback: () => void
+  callback: () => void,
+  writeAccess = false
 ) => {
   const { platformUsers } = useUser()
   const isPlatformConnected = platformUsers?.some(
     ({ platformName }) => platformName === platform
   )
 
-  const { authData, onOpen, ...rest } = platformAuthHooks[platform](scope)
+  const { authData, onOpen, ...rest } = platformAuthHooks[platform](
+    writeAccess as never
+  )
   const [hasClickedAuth, setHasClickedAuth] = useState(false)
 
   const handleClick = () => {

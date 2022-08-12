@@ -19,13 +19,18 @@ type Props = {
   buttonText: string
 } & ButtonProps
 
+// Mock until we can fetch from BE
+const platformUserData = {
+  readonly: true,
+}
+
 const BaseOAuthSelectButton = ({
   onSelection,
   platform,
   buttonText,
   ...buttonProps
 }: Props) => {
-  const { platformUsers, mutate } = useUser()
+  const { platformUsers, mutate /* platformUserData */ } = useUser()
   const isPlatformConnected = platformUsers?.some(
     ({ platformName }) => platformName === platform
   )
@@ -51,9 +56,10 @@ const BaseOAuthSelectButton = ({
     { onSuccess: () => mutate().then(() => onSelection(platform)) }
   )
 
+  const shouldAuth = !isPlatformConnected || platformUserData.readonly
+
   const { callbackWithOAuth, isAuthenticating, authData } = useOAuthWithCallback(
     platform,
-    "guilds", // TODO: Scope shouldn't be specified here
     () => {
       if (!isPlatformConnected) {
         onSubmit({
@@ -63,7 +69,8 @@ const BaseOAuthSelectButton = ({
       } else {
         onSelection(platform)
       }
-    }
+    },
+    true
   )
   const disconnect = useDisconnect(() => mutate())
 
@@ -88,14 +95,14 @@ const BaseOAuthSelectButton = ({
   return (
     <Button
       onClick={
-        isPlatformConnected
-          ? !!gateables.error
-            ? () =>
-                disconnect.onSubmit({
-                  platformName: platform,
-                })
-            : () => onSelection(platform)
-          : callbackWithOAuth
+        shouldAuth
+          ? callbackWithOAuth
+          : !!gateables.error
+          ? () =>
+              disconnect.onSubmit({
+                platformName: platform,
+              })
+          : () => onSelection(platform)
       }
       isLoading={
         isAuthenticating ||
