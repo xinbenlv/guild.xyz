@@ -298,7 +298,7 @@ const GuildCard = ({ guild, baseUrl }: GuildCardProps): JSX.Element => (
             fontSize: "7px",
           }}
         >
-          <svg
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             width="8px"
             height="8px"
@@ -344,7 +344,7 @@ const GuildCard = ({ guild, baseUrl }: GuildCardProps): JSX.Element => (
               stroke-linejoin="round"
               stroke-width="24"
             />
-          </svg>
+          </svg> */}
           <span>{guild.memberCount}</span>
         </div>
 
