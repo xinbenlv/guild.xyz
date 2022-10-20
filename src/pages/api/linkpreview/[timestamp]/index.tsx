@@ -65,6 +65,20 @@ const handler = async (req, _) => {
             ))}
           </div>
 
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            style={{
+              display: "flex",
+              position: "absolute",
+              top: 0,
+              right: 0,
+              width: "400px",
+              height: "450px",
+            }}
+            src={`${baseUrl}/img/linkPreviewUsersIcons.png`}
+            alt="Users icons grid"
+          />
+
           <div
             style={{
               display: "flex",
@@ -289,7 +303,7 @@ const GuildCard = ({ guild, baseUrl }: GuildCardProps): JSX.Element => (
             display: "flex",
             alignItems: "center",
             marginRight: "4px",
-            paddingLeft: "4px",
+            paddingLeft: "14x",
             paddingRight: "4px",
             height: "12px",
             backgroundColor: "rgba(255, 255, 255, 0.08)",
@@ -298,53 +312,6 @@ const GuildCard = ({ guild, baseUrl }: GuildCardProps): JSX.Element => (
             fontSize: "7px",
           }}
         >
-          {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="8px"
-            height="8px"
-            fill="rgba(255, 255, 255, 0.8)"
-            viewBox="0 0 256 256"
-            focusable="false"
-            style={{
-              marginRight: "4px",
-            }}
-          >
-            <rect width="256" height="256" fill="none" />
-            <circle
-              cx="88"
-              cy="108"
-              r="52"
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.8)"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="24"
-            />
-            <path
-              d="M155.4,57.9A54.5,54.5,0,0,1,169.5,56a52,52,0,0,1,0,104"
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.8)"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="24"
-            />
-            <path
-              d="M16,197.4a88,88,0,0,1,144,0"
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.8)"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="24"
-            />
-            <path
-              d="M169.5,160a87.9,87.9,0,0,1,72,37.4"
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.8)"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="24"
-            />
-          </svg> */}
           <span>{guild.memberCount}</span>
         </div>
 
