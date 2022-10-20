@@ -26,6 +26,13 @@ class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@guildxyz" />
           <link rel="shortcut icon" href="/guild-icon.png" />
+          <script
+            id="helpkit-widget"
+            data-project-id="guild"
+            type="text/javascript"
+            src="https://www.helpkit.so/widget/script.js"
+            async
+          />
         </Head>
         <body>
           <Main />
