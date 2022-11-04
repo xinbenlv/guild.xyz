@@ -1,4 +1,4 @@
-import { Tag, TagLabel, TagLeftIcon, Tooltip, Wrap } from "@chakra-ui/react"
+import { Tag, TagLabel, TagLeftIcon, Text, Tooltip, Wrap } from "@chakra-ui/react"
 import DisplayCard from "components/common/DisplayCard"
 import Link from "components/common/Link"
 import { Users } from "phosphor-react"
@@ -17,6 +17,9 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
     borderRadius="2xl"
     w="full"
     h="full"
+    itemScope
+    itemType="Thing"
+    itemProp="url"
   >
     <DisplayCard image={guildData.imageUrl} title={guildData.name}>
       <Wrap zIndex="1">
@@ -29,6 +32,14 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
             <TagLabel>{pluralize(guildData.roles?.length ?? 0, "role")}</TagLabel>
           </Tag>
         </Tooltip>
+        {/* Schema.org attributes */}
+        <Text as="span" hidden itemProp="name">
+          {guildData.name}
+        </Text>
+        <Text as="span" hidden itemProp="name">{`${pluralize(
+          guildData.memberCount ?? 0,
+          "member"
+        )},  ${pluralize(guildData.roles?.length ?? 0, "role")}`}</Text>
       </Wrap>
     </DisplayCard>
   </Link>
