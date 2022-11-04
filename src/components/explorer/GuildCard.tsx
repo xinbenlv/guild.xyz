@@ -18,7 +18,6 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
     w="full"
     h="full"
     itemScope
-    itemType="Thing"
     itemProp="url"
   >
     <DisplayCard image={guildData.imageUrl} title={guildData.name}>
