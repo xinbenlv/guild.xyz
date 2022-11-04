@@ -17,10 +17,13 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
     borderRadius="2xl"
     w="full"
     h="full"
-    itemScope
-    itemType="Organization"
   >
-    <DisplayCard image={guildData.imageUrl} title={guildData.name}>
+    <DisplayCard
+      image={guildData.imageUrl}
+      title={guildData.name}
+      itemScope
+      itemType="Organization"
+    >
       <Wrap zIndex="1">
         <Tag as="li">
           <TagLeftIcon as={Users} />
@@ -33,12 +36,12 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
         </Tooltip>
         {/* Schema.org attributes */}
         <Text as="span" hidden itemProp="url">
-          {`https://guild.xyz/${guildData.urlName}`}
+          {`/${guildData.urlName}`}
         </Text>
         <Text as="span" hidden itemProp="name">
           {guildData.name}
         </Text>
-        <Text as="span" hidden itemProp="name">{`${pluralize(
+        <Text as="span" hidden itemProp="description">{`${pluralize(
           guildData.memberCount ?? 0,
           "member"
         )},  ${pluralize(guildData.roles?.length ?? 0, "role")}`}</Text>
