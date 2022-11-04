@@ -19,7 +19,6 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
     h="full"
     itemScope
     itemType="Organization"
-    itemProp="url"
   >
     <DisplayCard image={guildData.imageUrl} title={guildData.name}>
       <Wrap zIndex="1">
@@ -33,6 +32,9 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
           </Tag>
         </Tooltip>
         {/* Schema.org attributes */}
+        <Text as="span" hidden itemProp="url">
+          {`https://guild.xyz/${guildData.urlName}`}
+        </Text>
         <Text as="span" hidden itemProp="name">
           {guildData.name}
         </Text>
