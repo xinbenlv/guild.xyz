@@ -38,6 +38,11 @@ const GuildCard = ({ guildData }: Props): JSX.Element => (
         <Text as="span" hidden itemProp="url">
           {`https://guild.xyz/${guildData.urlName}`}
         </Text>
+        <Text as="span" hidden itemProp="image">
+          {guildData.imageUrl?.match("guildLogos")
+            ? `https://guild.xyz/${guildData.imageUrl}`
+            : guildData.imageUrl}
+        </Text>
         <Text as="span" hidden itemProp="name">
           {guildData.name}
         </Text>
