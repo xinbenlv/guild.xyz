@@ -1,4 +1,5 @@
 import { hexStripZeros } from "@ethersproject/bytes"
+import { hashMessage } from "@ethersproject/hash"
 import { keccak256 } from "@ethersproject/keccak256"
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers"
 import { toUtf8Bytes } from "@ethersproject/strings"
@@ -19,6 +20,8 @@ type Options<ResponseType> = {
   onSuccess?: (response: ResponseType) => void
   onError?: (error: any) => void
 }
+
+let counter = 0
 
 type FetcherFunction<DataType, ResponseType> = ({
   data,
@@ -285,9 +288,17 @@ const sign = async ({
       params.chainId = paramChainId
     }
 
-    sig = await provider
-      .getSigner(address.toLowerCase())
-      .signMessage(getMessage(params))
+    console.group(`Signature #${counter}`)
+
+    counter++
+    const message = getMessage(params)
+    console.log("message:", JSON.stringify(message))
+    console.log("hashMessage(message):", hashMessage(message))
+    console.log("keccak256(toUtf8Bytes(message))", keccak256(toUtf8Bytes(message)))
+    sig = await provider.getSigner(address.toLowerCase()).signMessage(message)
+    console.log("sig:", sig)
+
+    console.groupEnd()
   }
 
   return { params, sig }
