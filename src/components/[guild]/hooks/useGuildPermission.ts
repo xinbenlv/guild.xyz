@@ -13,6 +13,8 @@ const useGuildPermission = () => {
 
   const admin = guild.admins.find((a) => a?.id === id)
 
+  console.log("useGuildPermission - OK")
+
   return {
     isAdmin: !!admin || isSuperAdmin,
     isOwner: !!admin?.isOwner,

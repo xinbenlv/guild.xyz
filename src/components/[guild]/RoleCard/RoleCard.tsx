@@ -31,9 +31,11 @@ const RoleCard = memo(({ role }: Props) => {
 
   useEffect(() => {
     if (isAdmin) {
+      console.log("isAdmin:true - setDynamicEditRole...")
       const EditRole = dynamic(() => import("./components/EditRole"))
       setDynamicEditRole(EditRole)
     } else {
+      console.log("isAdmin:false")
       setDynamicEditRole(null)
     }
   }, [isAdmin])
