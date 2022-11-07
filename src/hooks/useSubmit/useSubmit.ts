@@ -3,6 +3,8 @@ import { hashMessage } from "@ethersproject/hash"
 import { keccak256 } from "@ethersproject/keccak256"
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers"
 import { toUtf8Bytes } from "@ethersproject/strings"
+import { recoverAddress } from "@ethersproject/transactions"
+import { verifyMessage } from "@ethersproject/wallet"
 import { useWeb3React } from "@web3-react/core"
 import { Chains, RPC } from "connectors"
 import { randomBytes } from "crypto"
@@ -292,11 +294,17 @@ const sign = async ({
 
     counter++
     const message = getMessage(params)
+    console.log("address:", address.toLowerCase())
     console.log("message:", JSON.stringify(message))
     console.log("hashMessage(message):", hashMessage(message))
     console.log("keccak256(toUtf8Bytes(message))", keccak256(toUtf8Bytes(message)))
     sig = await provider.getSigner(address.toLowerCase()).signMessage(message)
     console.log("sig:", sig)
+    console.log("verifyMessage(message, sig)", verifyMessage(message, sig))
+    console.log(
+      "recoverAddress(keccak256(toUtf8Bytes(message)), sig)",
+      recoverAddress(keccak256(toUtf8Bytes(message)), sig)
+    )
 
     console.groupEnd()
   }
