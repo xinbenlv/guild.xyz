@@ -9,6 +9,10 @@ const useUser = () => {
   const { keyPair, ready, isValid } = useKeyPair()
   const fetcherWithSign = useFetcherWithSign()
 
+  const { data: simpleUser } = useSWRImmutable<User>(
+    account ? `/user/${account}` : null
+  )
+
   const { isValidating, data, mutate } = useSWRImmutable<User>(
     account && ready && keyPair && isValid
       ? [`/user/details/${account}`, { method: "POST", body: {} }]
@@ -19,6 +23,7 @@ const useUser = () => {
   return {
     isLoading: !data && isValidating,
     ...data,
+    id: simpleUser?.id,
     mutate,
   }
 }
