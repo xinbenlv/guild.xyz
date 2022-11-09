@@ -75,6 +75,7 @@ const OAuth = () => {
     )
   }, [router])
 
-  return <AuthRedirect />
+  // TODO
+  return <AuthRedirect isTwitter={false} />
 }
 export default OAuth
