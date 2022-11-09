@@ -89,7 +89,10 @@ const OAuth = () => {
     )
   }, [router, params])
 
-  // TODO
-  return <AuthRedirect isTwitter={false} />
+  return (
+    <AuthRedirect
+      isTwitter={params?.clientId === process.env.NEXT_PUBLIC_TWITTER_CLIENT_ID}
+    />
+  )
 }
 export default OAuth
