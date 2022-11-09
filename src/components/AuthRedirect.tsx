@@ -25,7 +25,7 @@ const AuthRedirect = ({ isTwitter, isUnsupported = false }: Props): JSX.Element 
       </Text>
       {!isUnsupported && isTwitterOnIOS && (
         <Text>
-          If you're using the iOS Twitter app for authenticating, please try using
+          If you're using the iOS Twitter app for authentication, please try using
           Twitter from your browser or try authenticating on another device
         </Text>
       )}
